@@ -6,16 +6,16 @@
 #    By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/26 13:36:29 by mklevero          #+#    #+#              #
-#    Updated: 2025/06/26 13:52:42 by mklevero         ###   ########.fr        #
+#    Updated: 2025/06/26 16:35:49 by mklevero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
-CC = CC
+CC = cc
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRCS = 
+SRCS = main.c 
 
 OBJ = $(SRCS:.c=.o)
 .SECONDARY: ${OBJ}

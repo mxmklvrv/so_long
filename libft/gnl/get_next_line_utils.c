@@ -6,11 +6,11 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:49:24 by mklevero          #+#    #+#             */
-/*   Updated: 2025/06/26 14:04:59 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/06/26 16:34:46 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 char	*gnl_ft_strdup(const char *s)
 {

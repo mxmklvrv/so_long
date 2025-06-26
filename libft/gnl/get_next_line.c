@@ -6,11 +6,11 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:48:33 by mklevero          #+#    #+#             */
-/*   Updated: 2025/06/26 14:04:37 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/06/26 16:34:42 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 char	*ft_get_line(int fd, char *leftovers, char *buffer)
 {
