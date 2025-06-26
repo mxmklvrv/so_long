@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/06/26 15:13:20 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/06/26 17:30:24 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,16 @@
 
 typedef struct s_game
 {
-	
-}		t_game;
+	char	**map;
+	int		width;
+	int		height;
 
-int		main(int ac, char **av);
+}			t_game;
 
-void	check_input(int ac, char **av);
+int			main(int ac, char **av);
 
-void	error_message(char *message);
+void		check_input(int ac, char **av);
+
+void		error_message(char *message);
 
 #endif
