@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/06/27 13:16:23 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/06/27 18:04:02 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int ac, char **av)
 
 	check_input(ac, av);
 	game = init_base_data(av[1]);
+	return (0);
 }
 
 t_game	*init_base_data(char *input)
@@ -27,7 +28,39 @@ t_game	*init_base_data(char *input)
 	t_game	*data;
 
 	map_in_line = process_map(input);
-	
+	validate_map(map_in_line);
+	printf("%s", map_in_line);
+	free(map_in_line);
+	return (0);
+}
+void	error_on_validation(char *message, char *str)
+{
+	ft_putstr_fd("Error\n", 2);
+	ft_putendl_fd(message, 2);
+	free(str);
+	exit(1);
+}
+
+void	validate_map(char *map_in_line)
+{
+	check_on_empty(map_in_line);
+	// check on smth else
+}
+void	check_on_empty(char *contents)
+{
+	int	i;
+
+	i = 0;
+	if (contents == NULL)
+		error_on_validation("so... just an empty file", contents);
+	if (contents[0] == '\n')
+		error_on_validation("so... an empty line detected", contents);
+	while (contents[i])
+	{
+		if (contents[i] == '\n' && contents[i + 1] == '\n')
+			error_on_validation("so... part of map is missing", contents);
+		i++;
+	}
 }
 
 void	error_message(char *message)
@@ -49,11 +82,11 @@ char	*process_map(char *input)
 		error_message("so... cannot open file");
 	joined = NULL;
 	solo = get_next_line(fd);
-	while(solo)
+	while (solo)
 	{
 		tempo = join_together(joined, solo);
 		free(solo);
-		if(tempo == NULL)
+		if (tempo == NULL)
 		{
 			free(joined);
 			error_message("so... malloc failed");
@@ -83,10 +116,10 @@ char	*join_together(char *s1, char *s2)
 	{
 		free(s1);
 		return (NULL);
-	}	
+	}
 	if (s1 != NULL)
-		memcpy(joined, s1, len_1);
-	memcpy(joined + len_1, s2, len_2);
+		ft_memcpy(joined, s1, len_1);
+	ft_memcpy(joined + len_1, s2, len_2);
 	joined[len_1 + len_2] = '\0';
 	free(s1);
 	return (joined);
