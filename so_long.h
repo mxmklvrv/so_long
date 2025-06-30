@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/06/30 14:51:13 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:39:41 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,13 @@ void		check_input(int ac, char **av);
 // init data
 t_game		*init_base_data(char *input);
 
-// map operations
+// map validation
 char		*process_map(char *input);
 void		validate_map(char *map_in_line);
 void		check_valid_input(char *contents);
 void		check_invalid_input(char *contents);
 void		check_empty_lines(char *contents);
+void		check_map_form(char *contents);
 
 // helpers
 char		*join_together(char *s1, char *s2);

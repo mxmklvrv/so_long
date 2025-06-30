@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/06/30 14:56:36 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:16:59 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,34 @@ void	validate_map(char *map_in_line)
 	check_empty_lines(map_in_line);
 	check_invalid_input(map_in_line);
 	check_valid_input(map_in_line);
+	check_map_form(map_in_line);
+}
+
+void	check_map_form(char *contents)
+{
+	int	i;
+	int	first_row;
+	int	next_row;
+
+	i = 0;
+	first_row = 0;
+	while (contents[i] != '\n' && contents[i] != '\0')
+	{
+		first_row++;
+		i++;
+	}
+	while (contents[i])
+	{
+		i++;
+		next_row = 0;
+		while (contents[i] != '\n' && contents[i] != '\0')
+		{
+			next_row++;
+			i++;
+		}
+		if (first_row != next_row)
+			error_on_validation("so... not a rectangular shape", contents);
+	}
 }
 
 void	check_valid_input(char *contents)
