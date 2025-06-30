@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/06/30 15:39:41 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/06/30 19:36:53 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,18 @@
 
 # include "libft/libft.h"
 # include <fcntl.h>
-# include <stdio.h>
+# include <stdio.h> // remove
 # include <stdlib.h>
 # include <unistd.h>
 
 typedef struct s_game
 {
 	char	**map;
-	int		width;
-	int		height;
+	int		map_width;
+	int		map_height;
+	int		collectible;
+	int		collected;
+	int		steps;
 
 }			t_game;
 
@@ -34,7 +37,7 @@ int			main(int ac, char **av);
 void		check_input(int ac, char **av);
 
 // init data
-t_game		*init_base_data(char *input);
+t_game		*get_base_data(char *input);
 
 // map validation
 char		*process_map(char *input);
@@ -42,13 +45,18 @@ void		validate_map(char *map_in_line);
 void		check_valid_input(char *contents);
 void		check_invalid_input(char *contents);
 void		check_empty_lines(char *contents);
+void		check_minimum_rows(char *contents);
 void		check_map_form(char *contents);
+void		check_walls(char *contents);
+void		confirm_wall(char *contents, int start, int len, int decider);
 
 // helpers
 char		*join_together(char *s1, char *s2);
+void		check_command_line(int ac, char **av);
 
-// error handling
+// error and free handling
 void		error_message(char *message);
 void		error_on_validation(char *message, char *str);
+void		free_map(char **map_splitted);
 
 #endif

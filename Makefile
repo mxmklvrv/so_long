@@ -6,7 +6,7 @@
 #    By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/26 13:36:29 by mklevero          #+#    #+#              #
-#    Updated: 2025/06/30 14:54:12 by mklevero         ###   ########.fr        #
+#    Updated: 2025/06/30 19:07:13 by mklevero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = cc
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRCS = main.c error.c
+SRCS = main.c error.c map_validation.c map_validaton_2.c helpers.c 
 
 OBJ = $(SRCS:.c=.o)
 .SECONDARY: ${OBJ}
