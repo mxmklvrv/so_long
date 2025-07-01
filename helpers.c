@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:05:43 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/01 16:00:27 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:22:58 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	check_command_line(int ac, char **av)
 		error_message("Provide a valid .ber file");
 }
 
-void	get_height(char **map_splitted)
+int	get_height(char **map_splitted)
 {
 	int	i;
 
@@ -63,4 +63,28 @@ void	get_height(char **map_splitted)
 	while (map_splitted[i])
 		i++;
 	return (i);
+}
+
+int	get_pos(t_game *data, char object, char axes)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (data->map[y])
+	{
+		x = 0;
+		while (data->map[y][x])
+		{
+			if (data->map[y][x] == object)
+			{
+				if (axes == 'x')
+					return (x);
+				else if (axes == 'y')
+					return (y);
+			}
+			x++;
+		}
+		y++;
+	}
 }

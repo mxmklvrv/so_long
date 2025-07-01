@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/01 15:42:22 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/01 16:37:56 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void		confirm_wall(char *contents, int start, int len, int decider);
 // helpers
 char		*join_together(char *s1, char *s2);
 void		check_command_line(int ac, char **av);
+int			get_height(char **map_splitted);
 
 // error and free handling
 void		error_message(char *message);

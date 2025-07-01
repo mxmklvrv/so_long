@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:41:04 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/01 15:43:15 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/01 17:31:55 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	error_on_validation(char *message, char *str)
 
 void	error_and_destroy(char *message, t_game *game)
 {
-	
 	error_message(message);
 }
 

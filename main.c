@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/01 15:57:59 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:22:52 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,13 @@ t_game	*init_basic_data(char **map_splitted)
 	}
 	data->map = map_splitted;
 	data->map_width = ft_strlen(map_splitted[0]);
-	data->map_height = 
-
+	data->map_height = get_height(map_splitted);
+	data->ppos_x = get_pos(data, 'P', 'x');
+	data->ppos_y = get_pos(data, 'P', 'y');
+	data->epos_x = get_pos(data, 'E', 'x');
+	data->epos_y = get_pos(data, 'E', 'y');
 }
+
 
 
 char	*process_map(char *input)
@@ -80,6 +84,7 @@ char	*process_map(char *input)
 		if (tempo == NULL)
 		{
 			free(joined);
+			close(fd);
 			error_message("Malloc failed");
 		}
 		joined = tempo;
