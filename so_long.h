@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/01 16:37:56 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:27:40 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void		check_command_line(int ac, char **av);
 
 // init data
 t_game		*get_basic_data(char *input);
+t_game		*init_basic_data(char **map_splitted);
 
 // map validation
 char		*process_map(char *input);
@@ -58,6 +59,7 @@ void		confirm_wall(char *contents, int start, int len, int decider);
 char		*join_together(char *s1, char *s2);
 void		check_command_line(int ac, char **av);
 int			get_height(char **map_splitted);
+int			get_pos(t_game *data, char object, char axes);
 
 // error and free handling
 void		error_message(char *message);

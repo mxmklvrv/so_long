@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/01 18:22:52 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:40:10 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,14 @@ int	main(int ac, char **av)
 
 	check_command_line(ac, av);
 	game = get_basic_data(av[1]);
-	return (0); // remove
+	printf("height %d\n", game->map_height); // remove
+	printf("width %d\n", game->map_width);  // remove
+	printf("PPOS_X %d\n", game->ppos_x);     // remove
+	printf("PPOS_Y %d\n", game->ppos_y);     // remove
+	printf("EPOS_X %d\n", game->epos_x);     // remove
+	printf("EPOS_Y %d\n", game->epos_y);     // remove
+	free(game);                       // added for now.
+	return (0);                       // remove
 }
 
 t_game	*get_basic_data(char *input)
@@ -41,7 +48,7 @@ t_game	*get_basic_data(char *input)
 		check++;
 	}
 	free_map(map_splitted); // remove
-	return (0);             // remove
+	return (basic_data);    // remove
 }
 
 t_game	*init_basic_data(char **map_splitted)
@@ -61,9 +68,8 @@ t_game	*init_basic_data(char **map_splitted)
 	data->ppos_y = get_pos(data, 'P', 'y');
 	data->epos_x = get_pos(data, 'E', 'x');
 	data->epos_y = get_pos(data, 'E', 'y');
+	return (data);
 }
-
-
 
 char	*process_map(char *input)
 {

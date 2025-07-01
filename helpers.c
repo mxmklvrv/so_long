@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:05:43 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/01 18:22:58 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:29:42 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,5 @@ int	get_pos(t_game *data, char object, char axes)
 		}
 		y++;
 	}
+	return (0);
 }
