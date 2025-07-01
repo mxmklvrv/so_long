@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/06/30 19:36:53 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/01 15:42:22 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,12 @@ typedef struct s_game
 	char	**map;
 	int		map_width;
 	int		map_height;
-	int		collectible;
-	int		collected;
+	int		ppos_x;
+	int		ppos_y;
+	int		epos_x;
+	int		epos_y;
+	int		loot;
+	int		looted;
 	int		steps;
 
 }			t_game;
@@ -34,10 +38,10 @@ typedef struct s_game
 int			main(int ac, char **av);
 
 // terminal input check
-void		check_input(int ac, char **av);
+void		check_command_line(int ac, char **av);
 
 // init data
-t_game		*get_base_data(char *input);
+t_game		*get_basic_data(char *input);
 
 // map validation
 char		*process_map(char *input);
@@ -57,6 +61,7 @@ void		check_command_line(int ac, char **av);
 // error and free handling
 void		error_message(char *message);
 void		error_on_validation(char *message, char *str);
+void		error_and_destroy(char *message, t_game *game);
 void		free_map(char **map_splitted);
 
 #endif

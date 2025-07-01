@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:05:43 by mklevero          #+#    #+#             */
-/*   Updated: 2025/06/30 19:37:07 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/01 16:00:27 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,14 @@ void	check_command_line(int ac, char **av)
 	av_len = ft_strlen(av[1]);
 	if (av_len <= 4 || ft_strncmp(av[1] + av_len - 4, ".ber", 4) != 0)
 		error_message("Provide a valid .ber file");
+}
+
+void	get_height(char **map_splitted)
+{
+	int	i;
+
+	i = 0;
+	while (map_splitted[i])
+		i++;
+	return (i);
 }
