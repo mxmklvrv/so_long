@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:32:50 by mklevero          #+#    #+#             */
-/*   Updated: 2025/06/26 14:39:30 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/02 18:03:09 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,11 @@ int					ft_lstsize(t_list *lst);
 
 // GNL
 char				*get_next_line(int fd);
-char				*ft_get_line(int fd, char *leftovers, char *buffer);
+char				*ft_get_line(int fd, char *buffer);
 char				*ft_save_leftovers(char *full_line);
 char				*gnl_ft_strdup(const char *s);
 char				*gnl_ft_strchr(const char *s, int c);
 char				*gnl_ft_strjoin(char const *s1, char const *s2);
+void				gnl_clear(void);
 
 #endif

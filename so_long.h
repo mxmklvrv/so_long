@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/02 13:40:07 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/02 18:08:38 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ typedef struct s_game
 
 }			t_game;
 
+// UDALI ETO
+void		print_args(char **argv);
+
 // main
 int			main(int ac, char **av);
 
@@ -43,7 +46,6 @@ void		check_command_line(int ac, char **av);
 // init data
 t_game		*get_basic_data(char *input);
 t_game		*init_basic_data(char **map_splitted);
-
 
 // map validation
 char		*process_map(char *input);
@@ -56,11 +58,10 @@ void		check_map_form(char *contents);
 void		check_walls(char *contents);
 void		confirm_wall(char *contents, int start, int len, int decider);
 
-//path validation
-void    validate_path(t_game *basic_data);
-void    flood_fill(char **map_dup, int x, int y);
-char    **duplicate(t_game *basic_data);
-
+// path validation
+void		validate_path(t_game *basic_data);
+void		flood_fill(char **map_dup, int x, int y);
+char		**duplicate(t_game *basic_data);
 
 // helpers
 char		*join_together(char *s1, char *s2);

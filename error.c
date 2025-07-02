@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:41:04 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/02 13:41:04 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/02 17:33:43 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,9 @@ void	error_on_validation(char *message, char *str)
 
 void	error_and_destroy(char *message, t_game *game)
 {
-    if(game->map)
-        free_map(game->map);
-
-
-
-    
+	if (game->map)
+		free_map(game->map);
+	free(game);
 	error_message(message);
 }
 

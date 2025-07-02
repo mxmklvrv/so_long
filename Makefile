@@ -6,12 +6,12 @@
 #    By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/26 13:36:29 by mklevero          #+#    #+#              #
-#    Updated: 2025/06/30 19:07:13 by mklevero         ###   ########.fr        #
+#    Updated: 2025/07/02 15:59:06 by mklevero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
-CC = cc
+CC = cc -g
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 

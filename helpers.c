@@ -6,38 +6,13 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:05:43 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/01 18:29:42 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/02 17:48:11 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	*join_together(char *s1, char *s2)
-{
-	size_t	len_1;
-	size_t	len_2;
-	char	*joined;
 
-	if (s1 == NULL && s2 == NULL)
-		return (NULL);
-	if (s1 == NULL)
-		len_1 = 0;
-	else
-		len_1 = ft_strlen(s1);
-	len_2 = ft_strlen(s2);
-	joined = (char *)malloc(sizeof(char) * (len_1 + len_2 + 1));
-	if (joined == NULL)
-	{
-		free(s1);
-		return (NULL);
-	}
-	if (s1 != NULL)
-		ft_memcpy(joined, s1, len_1);
-	ft_memcpy(joined + len_1, s2, len_2);
-	joined[len_1 + len_2] = '\0';
-	free(s1);
-	return (joined);
-}
 
 void	check_command_line(int ac, char **av)
 {
