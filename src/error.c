@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:41:04 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/02 17:33:43 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/02 18:53:40 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ void	error_message(char *message)
 	ft_putstr_fd("Error\n", 2);
 	ft_putendl_fd(message, 2);
 	exit(1);
+}
+void	gnl_and_close(int fd)
+{
+	close(fd);
+	gnl_clear();
 }
 
 void	error_on_validation(char *message, char *str)

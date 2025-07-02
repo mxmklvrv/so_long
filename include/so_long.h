@@ -6,14 +6,14 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/02 18:08:38 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/02 19:36:06 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "libft/libft.h"
+# include "libft.h"
 # include <fcntl.h>
 # include <stdio.h> // remove
 # include <stdlib.h>
@@ -74,5 +74,6 @@ void		error_message(char *message);
 void		error_on_validation(char *message, char *str);
 void		error_and_destroy(char *message, t_game *game);
 void		free_map(char **map_splitted);
+void		gnl_and_close(int fd);
 
 #endif

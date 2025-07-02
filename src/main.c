@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/02 18:11:57 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/02 19:00:18 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	main(int ac, char **av)
 
 	check_command_line(ac, av);
 	game = get_basic_data(av[1]);
-	if (!game)
-		error_and_destroy("123", game);
+	if (!game) // remove
+		error_and_destroy("123", game); //remove
 	free(game); // added for now.
 	return (0); // remove
 }
@@ -51,7 +51,7 @@ t_game	*get_basic_data(char *input)
 	free(map_in_line);
 	basic_data = init_basic_data(map_splitted);
 	validate_path(basic_data);
-	free_map(map_splitted);
+	//free_map(map_splitted);
 	return (basic_data); // remove
 }
 
@@ -164,15 +164,13 @@ char	*process_map(char *input)
 		if (tempo == NULL)
 		{
 			free(joined);
-			close(fd);
-			gnl_clear();
+			gnl_and_close(fd);
 			error_message("Malloc failed");
 		}
 		joined = tempo;
 		solo = get_next_line(fd);
 	}
-	close(fd);
-	gnl_clear();
+	gnl_and_close(fd);
 	return (joined);
 }
 char	*join_together(char *s1, char *s2)
