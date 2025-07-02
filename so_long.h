@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/01 18:27:40 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/02 13:40:07 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void		check_command_line(int ac, char **av);
 t_game		*get_basic_data(char *input);
 t_game		*init_basic_data(char **map_splitted);
 
+
 // map validation
 char		*process_map(char *input);
 void		validate_map(char *map_in_line);
@@ -54,6 +55,12 @@ void		check_minimum_rows(char *contents);
 void		check_map_form(char *contents);
 void		check_walls(char *contents);
 void		confirm_wall(char *contents, int start, int len, int decider);
+
+//path validation
+void    validate_path(t_game *basic_data);
+void    flood_fill(char **map_dup, int x, int y);
+char    **duplicate(t_game *basic_data);
+
 
 // helpers
 char		*join_together(char *s1, char *s2);

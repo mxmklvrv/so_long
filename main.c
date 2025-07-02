@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/01 18:40:10 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/02 13:40:09 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_game	*get_basic_data(char *input)
 		error_on_validation("Split failed", map_in_line);
 	free(map_in_line);
 	basic_data = init_basic_data(map_splitted);
+    validate_path(basic_data);
 	while (map_splitted[check]) // remove all
 	{
 		printf("%s\n", map_splitted[check]);
@@ -50,6 +51,65 @@ t_game	*get_basic_data(char *input)
 	free_map(map_splitted); // remove
 	return (basic_data);    // remove
 }
+
+
+void    validate_path(t_game *basic_data)
+{
+    char **map_dup;
+    int i;
+    int j;
+    
+    i = 0;
+    map_dup = duplicate(basic_data);
+    if(map_dup == NULL)
+        error_and_destroy("Malloc faild during path validation", basic_data);
+    flood_fill(map_dup, basic_data->ppos_x, basic_data->ppos_y);
+
+
+}
+
+void    flood_fill(char **map_dup, int x, int y)
+{
+     if(map_dup[x][y] == '1' || map_dup[x][y] == 'W')
+        return ;
+    if(map_dup[x][y] == 'E')
+    {
+        map_dup[x][y] = '1';
+        return ;
+    }
+    if(map_dup[x][y] == '0' || map_dup[x][y] == 'C' || map_dup[x][y] == 'P')
+        map_dup[x][y] = 'W';
+    flood_fill(map_dup, x - 1, y); // up
+    flood_fill(map_dup, x + 1, y); // ))
+    flood_fill(map_dup, x, y - 1); // left
+    flood_fill(map_dup, x , y + 1);// right
+}
+
+char    **duplicate(t_game *basic_data)
+{
+    int i;
+    char **map_dup;
+    
+    i = 0;
+    map_dup = malloc(sizeof(char *) * (basic_data->map_height + 1));
+    if(map_dup == NULL)
+        return (NULL);
+    while(i < basic_data->map_height)
+    {
+        map_dup[i] = ft_strdup(basic_data->map[i]);
+        if(map_dup[i] == NULL)
+        {
+            free_map(map_dup);
+            return (NULL);
+        }
+        i++;
+    }
+    map_dup[i] = NULL;
+    return (map_dup);
+}
+
+
+
 
 t_game	*init_basic_data(char **map_splitted)
 {
