@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/02 19:00:18 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/03 21:49:00 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,167 @@ int	main(int ac, char **av)
 
 	check_command_line(ac, av);
 	game = get_basic_data(av[1]);
-	if (!game) // remove
-		error_and_destroy("123", game); //remove
+	start_game(game);
 	free(game); // added for now.
 	return (0); // remove
+}
+void	start_game(t_game *game)
+{
+	game->mlx = mlx_init(game->map_width * PX, game->map_height * PX, "so_long",
+			true);
+	if (!game->mlx)
+		error_and_destroy("Window creation failed", game);
+	game->textures = init_textures(game->mlx, game);
+	load_map(game);
+	mlx_loop(game->mlx);
+}
+void	load_map(t_game *game)
+{
+	int	x;
+	int	y;
+	int	control;
+
+	y = 0;
+	while (y < game->map_height)
+	{
+		x = 0;
+		while (x < game->map_width)
+		{
+			control = 0;
+			control = mlx_image_to_window(game->mlx, game->textures->floor, x
+					* PX, y * PX);
+			if (control < 0)
+				error_and_destroy("Loading background failed", game);
+			load_rest(game, x, y);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	load_rest(t_game *game, int x, int y)
+{
+	int	control;
+
+	control = 0;
+	if (game->map[y][x] == 'P')
+		control = mlx_image_to_window(game->mlx, game->textures->player, x * PX,
+				y * PX);
+	else if (game->map[y][x] == '1')
+		control = mlx_image_to_window(game->mlx, game->textures->wall, x * PX, y
+				* PX);
+	else if (game->map[y][x] == 'E')
+		control = mlx_image_to_window(game->mlx, game->textures->exit, x * PX, y
+				* PX);
+	else if (game->map[y][x] == 'C')
+		control = mlx_image_to_window(game->mlx, game->textures->collect, x
+				* PX, y * PX);
+	if (control < 0)
+		error_and_destroy("Loading failed", game);
+}
+
+t_textures	*init_textures(mlx_t *mlx, t_game *game)
+{
+	t_textures	*textures;
+
+	textures = malloc(sizeof(t_textures));
+	if (textures == NULL)
+		error_and_destroy("Malloc failed in textures init", game);
+	load_floor(mlx, textures, game);
+	load_walls(mlx, textures, game);
+	load_player(mlx, textures, game);
+	load_loot(mlx, textures, game);
+	load_exit(mlx, textures, game);
+	return (textures);
+}
+// need to free img later
+void	load_exit(mlx_t *mlx, t_textures *textures, t_game *game)
+{
+	mlx_texture_t	*exit;
+
+	exit = mlx_load_png("./img/exit.png");
+	if (exit == NULL)
+		error_and_destroy("Loading exit failed", game);
+	textures->exit = mlx_texture_to_image(mlx, exit);
+	if (textures->exit == NULL)
+	{
+		mlx_delete_texture(exit);
+		error_and_destroy("Loading texture to img failed", game);
+	}
+	mlx_resize_image(textures->exit, PX, PX);
+	mlx_delete_texture(exit);
+}
+
+// need to free img later
+void	load_loot(mlx_t *mlx, t_textures *textures, t_game *game)
+{
+	mlx_texture_t	*loot;
+
+	loot = mlx_load_png("./img/collect.png");
+	if (loot == NULL)
+		error_and_destroy("Loading collectable failed", game);
+	textures->collect = mlx_texture_to_image(mlx, loot);
+	if (textures->wall == NULL)
+	{
+		mlx_delete_texture(loot);
+		error_and_destroy("Loading texture to img failed", game);
+	}
+	mlx_resize_image(textures->collect, PX, PX);
+	mlx_delete_texture(loot);
+}
+
+// need to free img later
+void	load_player(mlx_t *mlx, t_textures *textures, t_game *game)
+{
+	mlx_texture_t	*player;
+
+	player = mlx_load_png("./img/maga.png");
+	if (player == NULL)
+		error_and_destroy("Loading player failed", game);
+	textures->player = mlx_texture_to_image(mlx, player);
+	if (textures->player == NULL)
+	{
+		mlx_delete_texture(player);
+		error_and_destroy("Loading texture to img failed", game);
+	}
+	mlx_resize_image(textures->player, PX, PX);
+	mlx_delete_texture(player);
+}
+
+// need to free img later
+void	load_walls(mlx_t *mlx, t_textures *textures, t_game *game)
+{
+	mlx_texture_t	*wall;
+
+	wall = mlx_load_png("./img/wall_2.png");
+	if (wall == NULL)
+		error_and_destroy("Loading wall failed", game);
+	textures->wall = mlx_texture_to_image(mlx, wall);
+	if (textures->wall == NULL)
+	{
+		mlx_delete_texture(wall);
+		error_and_destroy("Loading texture to img failed", game);
+	}
+	mlx_resize_image(textures->wall, PX, PX);
+	mlx_delete_texture(wall);
+}
+
+// need to free img later
+void	load_floor(mlx_t *mlx, t_textures *textures, t_game *game)
+{
+	mlx_texture_t	*floor;
+
+	floor = mlx_load_png("./img/floor_2.png");
+	if (floor == NULL)
+		error_and_destroy("Loading floor failed", game);
+	textures->floor = mlx_texture_to_image(mlx, floor);
+	if (textures->floor == NULL)
+	{
+		mlx_delete_texture(floor);
+		error_and_destroy("Loading texture to img failed", game);
+	}
+	mlx_resize_image(textures->floor, PX, PX);
+	mlx_delete_texture(floor);
 }
 
 t_game	*get_basic_data(char *input)
@@ -51,78 +208,8 @@ t_game	*get_basic_data(char *input)
 	free(map_in_line);
 	basic_data = init_basic_data(map_splitted);
 	validate_path(basic_data);
-	//free_map(map_splitted);
+	// free_map(map_splitted);
 	return (basic_data); // remove
-}
-
-void	validate_path(t_game *basic_data)
-{
-	char	**map_dup;
-	int		i;
-	int		j;
-
-	i = 0;
-	map_dup = duplicate(basic_data);
-	if (map_dup == NULL)
-		error_and_destroy("Malloc failed during path validation", basic_data);
-	flood_fill(map_dup, basic_data->ppos_x, basic_data->ppos_y);
-	while (i < basic_data->map_height)
-	{
-		j = 0;
-		while (j < basic_data->map_width)
-		{
-			if (map_dup[i][j] != '1' && map_dup[i][j] != '0'
-				&& map_dup[i][j] != '~')
-			{
-				free_map(map_dup);
-				error_and_destroy("Cannot find a valid path", basic_data);
-			}
-			j++;
-		}
-		i++;
-	}
-	free_map(map_dup);
-}
-
-void	flood_fill(char **map_dup, int x, int y)
-{
-	if (map_dup[y][x] == '1' || map_dup[y][x] == '~')
-		return ;
-	if (map_dup[y][x] == 'E')
-	{
-		map_dup[y][x] = '1';
-		return ;
-	}
-	if (map_dup[y][x] == '0' || map_dup[y][x] == 'C' || map_dup[y][x] == 'P')
-		map_dup[y][x] = '~';
-	print_args(map_dup);
-	flood_fill(map_dup, x - 1, y); // up
-	flood_fill(map_dup, x + 1, y); // ))
-	flood_fill(map_dup, x, y - 1); // left
-	flood_fill(map_dup, x, y + 1); // right
-}
-
-char	**duplicate(t_game *basic_data)
-{
-	int		i;
-	char	**map_dup;
-
-	i = 0;
-	map_dup = malloc(sizeof(char *) * (basic_data->map_height + 1));
-	if (map_dup == NULL)
-		return (NULL);
-	while (i < basic_data->map_height)
-	{
-		map_dup[i] = ft_strdup(basic_data->map[i]);
-		if (map_dup[i] == NULL)
-		{
-			free_map(map_dup);
-			return (NULL);
-		}
-		i++;
-	}
-	map_dup[i] = NULL;
-	return (map_dup);
 }
 
 t_game	*init_basic_data(char **map_splitted)
@@ -171,28 +258,5 @@ char	*process_map(char *input)
 		solo = get_next_line(fd);
 	}
 	gnl_and_close(fd);
-	return (joined);
-}
-char	*join_together(char *s1, char *s2)
-{
-	size_t len_1;
-	size_t len_2;
-	char *joined;
-
-	if (s1 == NULL && s2 == NULL)
-		return (NULL);
-	if (s1 == NULL)
-		len_1 = 0;
-	else
-		len_1 = ft_strlen(s1);
-	len_2 = ft_strlen(s2);
-	joined = (char *)malloc(sizeof(char) * (len_1 + len_2 + 1));
-	if (joined == NULL)
-		return (NULL);
-	if (s1 != NULL)
-		ft_memcpy(joined, s1, len_1);
-	ft_memcpy(joined + len_1, s2, len_2);
-	joined[len_1 + len_2] = '\0';
-	free(s1);
 	return (joined);
 }

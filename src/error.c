@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:41:04 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/02 18:53:40 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/03 18:09:51 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ void	error_and_destroy(char *message, t_game *game)
 {
 	if (game->map)
 		free_map(game->map);
+	if (game->textures)
+		free(game->textures);
+	
 	free(game);
 	error_message(message);
 }

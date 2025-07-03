@@ -6,7 +6,7 @@
 #    By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/26 13:36:29 by mklevero          #+#    #+#              #
-#    Updated: 2025/07/02 19:37:02 by mklevero         ###   ########.fr        #
+#    Updated: 2025/07/03 14:20:27 by mklevero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRC_DIR = src/
 HEADERS = -I ./include -I $(MLX42_DIR)/include -I $(LIBFT_DIR)
 MLX_LIBS = $(MLX42) -ldl -lglfw -pthread -lm
 
-SRCS = main.c error.c map_validation.c map_validation_2.c helpers.c 
+SRCS = main.c error.c map_validation.c map_validation_2.c helpers.c \
+path_validation.c 
 
 OBJ = $(addprefix $(OBJ_DIR),$(SRCS:.c=.o))
 .SECONDARY: ${OBJ}
