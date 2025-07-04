@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/04 23:18:00 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/05 00:38:02 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void			start_game(t_game *game);
 void			load_map(t_game *game);
 void			load_rest(t_game *game, int x, int y);
 
+
 void			load_floor(t_textures *textures, t_game *game);
 void			load_exit(t_textures *textures, t_game *game);
 void			load_loot(t_textures *textures, t_game *game);
@@ -98,6 +99,7 @@ int				count_loot(t_game *data);
 // gameplay
 void			move_hook(mlx_key_data_t keydata, void *param);
 void			action(t_game *game, char dir);
+void    redraw_player(t_game *game);
 // void			action(t_game *game, char **map, char dir);
 
 // error and free handling
