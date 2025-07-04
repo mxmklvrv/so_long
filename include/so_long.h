@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/04 15:47:42 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/04 21:12:01 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <unistd.h>
 
 # define PX 64
-# define PXc 48
 
 typedef struct s_textures
 {
@@ -62,8 +61,6 @@ t_game			*get_basic_data(char *input);
 t_game			*init_basic_data(char **map_splitted);
 t_textures		*init_textures(mlx_t *mlx, t_game *game);
 
-//
-
 // map validation
 char			*process_map(char *input);
 void			validate_map(char *map_in_line);
@@ -97,6 +94,11 @@ void			check_command_line(int ac, char **av);
 int				get_height(char **map_splitted);
 int				get_pos(t_game *data, char object, char axis);
 int				count_loot(t_game *data);
+
+// gameplay
+void			move_hook(mlx_key_data_t keydata, void *param);
+void			action(t_game *game, char dir);
+// void			action(t_game *game, char **map, char dir);
 
 // error and free handling
 void			error_message(char *message);

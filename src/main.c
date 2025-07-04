@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/04 15:53:19 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/04 21:13:39 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,36 @@ void	start_game(t_game *game)
 		error_and_destroy("Window creation failed", game);
 	game->textures = init_textures(game->mlx, game);
 	load_map(game);
+	mlx_set_setting(MLX_STRETCH_IMAGE, true);
+	mlx_key_hook(game->mlx, move_hook, game);
 	mlx_loop(game->mlx);
 }
+
+void	move_hook(mlx_key_data_t keydata, void *param)
+{
+	t_game	*game;
+
+	game = param;
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+	{
+		mlx_close_window(game->mlx);
+		mlx_terminate(game->mlx); // or change it
+	}
+	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
+		action(game, 'r');
+}
+
+void	action(t_game *game, char dir)
+{
+	if ((dir == 'r') && (game->map[game->ppos_y][game->ppos_x + 1] != '1'))
+	{
+		game->ppos_x += 1;
+		game->textures->player->instances[0].x += PX;
+		printf("Moved to: (%d, %d)\n", game->ppos_x, game->ppos_y);
+	}
+}
+
+
 void	load_map(t_game *game)
 {
 	int	x;
