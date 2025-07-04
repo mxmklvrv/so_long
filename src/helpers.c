@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:05:43 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/04 12:54:28 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/04 15:04:09 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ int	get_pos(t_game *data, char object, char axis)
 		{
 			if (data->map[y][x] == object)
 			{
-				if (axes == 'x')
+				if (axis == 'x')
 					return (x);
-				else if (axes == 'y')
+				else if (axis == 'y')
 					return (y);
 			}
 			x++;
@@ -63,21 +63,21 @@ int	get_pos(t_game *data, char object, char axis)
 	return (0);
 }
 
-int count_loot(t_game *data)
+int	count_loot(t_game *data)
 {
-    int x;
-    int y;
-    int count;
+	int	x;
+	int	y;
+	int	count;
 
-    y = 0;
-    count = 0;
+	y = 0;
+	count = 0;
 	while (data->map[y])
 	{
 		x = 0;
 		while (data->map[y][x])
 		{
 			if (data->map[y][x] == 'C')
-                count++;
+				count++;
 			x++;
 		}
 		y++;

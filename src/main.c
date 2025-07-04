@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/04 12:54:24 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/04 15:53:19 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	load_rest(t_game *game, int x, int y)
 				* PX);
 	else if (game->map[y][x] == 'C')
 		control = mlx_image_to_window(game->mlx, game->textures->collect, x
-				* PX, y * PX);
+				* PX, y * PX); // make smaller
 	if (control < 0)
 		error_and_destroy("Loading failed", game);
 }
@@ -103,95 +103,6 @@ t_textures	*init_textures(mlx_t *mlx, t_game *game)
 	load_loot(mlx, textures, game);
 	load_exit(mlx, textures, game);
 	return (textures);
-}
-
-void	load_exit(mlx_t *mlx, t_textures *textures, t_game *game)
-{
-	mlx_texture_t	*exit;
-
-	exit = mlx_load_png("./img/exit.png");
-	if (exit == NULL)
-		error_and_destroy("Loading exit failed", game);
-	textures->exit = mlx_texture_to_image(mlx, exit);
-	if (textures->exit == NULL)
-	{
-		mlx_delete_texture(exit);
-		error_and_destroy("Loading texture to img failed", game);
-	}
-	mlx_resize_image(textures->exit, PX, PX);
-	mlx_delete_texture(exit);
-}
-
-
-void	load_loot(mlx_t *mlx, t_textures *textures, t_game *game)
-{
-	mlx_texture_t	*loot;
-
-	loot = mlx_load_png("./img/collect.png");
-	if (loot == NULL)
-		error_and_destroy("Loading collectable failed", game);
-	textures->collect = mlx_texture_to_image(mlx, loot);
-	if (textures->collect == NULL)
-	{
-		mlx_delete_texture(loot);
-		error_and_destroy("Loading texture to img failed", game);
-	}
-	mlx_resize_image(textures->collect, PX, PX);
-	mlx_delete_texture(loot);
-}
-
-
-void	load_player(mlx_t *mlx, t_textures *textures, t_game *game)
-{
-	mlx_texture_t	*player;
-
-	player = mlx_load_png("./img/maga.png");
-	if (player == NULL)
-		error_and_destroy("Loading player failed", game);
-	textures->player = mlx_texture_to_image(mlx, player);
-	if (textures->player == NULL)
-	{
-		mlx_delete_texture(player);
-		error_and_destroy("Loading texture to img failed", game);
-	}
-	mlx_resize_image(textures->player, PX, PX);
-	mlx_delete_texture(player);
-}
-
-
-void	load_walls(mlx_t *mlx, t_textures *textures, t_game *game)
-{
-	mlx_texture_t	*wall;
-
-	wall = mlx_load_png("./img/wall_2.png");
-	if (wall == NULL)
-		error_and_destroy("Loading wall failed", game);
-	textures->wall = mlx_texture_to_image(mlx, wall);
-	if (textures->wall == NULL)
-	{
-		mlx_delete_texture(wall);
-		error_and_destroy("Loading texture to img failed", game);
-	}
-	mlx_resize_image(textures->wall, PX, PX);
-	mlx_delete_texture(wall);
-}
-
-
-void	load_floor(mlx_t *mlx, t_textures *textures, t_game *game)
-{
-	mlx_texture_t	*floor;
-
-	floor = mlx_load_png("./img/floor_2.png");
-	if (floor == NULL)
-		error_and_destroy("Loading floor failed", game);
-	textures->floor = mlx_texture_to_image(mlx, floor);
-	if (textures->floor == NULL)
-	{
-		mlx_delete_texture(floor);
-		error_and_destroy("Loading texture to img failed", game);
-	}
-	mlx_resize_image(textures->floor, PX, PX);
-	mlx_delete_texture(floor);
 }
 
 t_game	*get_basic_data(char *input)
@@ -229,12 +140,9 @@ t_game	*init_basic_data(char **map_splitted)
 	data->ppos_y = get_pos(data, 'P', 'y');
 	data->epos_x = get_pos(data, 'E', 'x');
 	data->epos_y = get_pos(data, 'E', 'y');
-    data->loot = count_loot(data);
+	data->loot = count_loot(data);
 	return (data);
 }
-
-
-
 
 char	*process_map(char *input)
 {
