@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/03 21:49:00 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:54:24 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ t_textures	*init_textures(mlx_t *mlx, t_game *game)
 	load_exit(mlx, textures, game);
 	return (textures);
 }
-// need to free img later
+
 void	load_exit(mlx_t *mlx, t_textures *textures, t_game *game)
 {
 	mlx_texture_t	*exit;
@@ -122,7 +122,7 @@ void	load_exit(mlx_t *mlx, t_textures *textures, t_game *game)
 	mlx_delete_texture(exit);
 }
 
-// need to free img later
+
 void	load_loot(mlx_t *mlx, t_textures *textures, t_game *game)
 {
 	mlx_texture_t	*loot;
@@ -131,7 +131,7 @@ void	load_loot(mlx_t *mlx, t_textures *textures, t_game *game)
 	if (loot == NULL)
 		error_and_destroy("Loading collectable failed", game);
 	textures->collect = mlx_texture_to_image(mlx, loot);
-	if (textures->wall == NULL)
+	if (textures->collect == NULL)
 	{
 		mlx_delete_texture(loot);
 		error_and_destroy("Loading texture to img failed", game);
@@ -140,7 +140,7 @@ void	load_loot(mlx_t *mlx, t_textures *textures, t_game *game)
 	mlx_delete_texture(loot);
 }
 
-// need to free img later
+
 void	load_player(mlx_t *mlx, t_textures *textures, t_game *game)
 {
 	mlx_texture_t	*player;
@@ -158,7 +158,7 @@ void	load_player(mlx_t *mlx, t_textures *textures, t_game *game)
 	mlx_delete_texture(player);
 }
 
-// need to free img later
+
 void	load_walls(mlx_t *mlx, t_textures *textures, t_game *game)
 {
 	mlx_texture_t	*wall;
@@ -176,7 +176,7 @@ void	load_walls(mlx_t *mlx, t_textures *textures, t_game *game)
 	mlx_delete_texture(wall);
 }
 
-// need to free img later
+
 void	load_floor(mlx_t *mlx, t_textures *textures, t_game *game)
 {
 	mlx_texture_t	*floor;
@@ -229,8 +229,12 @@ t_game	*init_basic_data(char **map_splitted)
 	data->ppos_y = get_pos(data, 'P', 'y');
 	data->epos_x = get_pos(data, 'E', 'x');
 	data->epos_y = get_pos(data, 'E', 'y');
+    data->loot = count_loot(data);
 	return (data);
 }
+
+
+
 
 char	*process_map(char *input)
 {

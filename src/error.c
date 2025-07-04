@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:41:04 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/03 18:09:51 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/04 11:56:36 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	error_and_destroy(char *message, t_game *game)
 	if (game->map)
 		free_map(game->map);
 	if (game->textures)
-		free(game->textures);
+		free_textures(game->textures);
 	
 	free(game);
 	error_message(message);
@@ -52,4 +52,19 @@ void	free_map(char **map_splitted)
 		free(map_splitted[i++]);
 	free(map_splitted);
 	map_splitted = NULL;
+}
+
+void    free_textures (t_game *game)
+{
+    if(game->textures->floor)
+        mlx_delete_image(game->mlx, game->textures->floor);
+    if(game->textures->wall)
+        mlx_delete_image(game->mlx, game->textures->wall);
+    if(game->textures->player)
+        mlx_delete_image(game->mlx, game->textures->player);
+    if(game->textures->exit)
+        mlx_delete_image(game->mlx, game->textures->exit);
+    if(game->textures->collect)
+        mlx_delete_image(game->mlx, game->textures->collect);
+    free(game->textures);
 }

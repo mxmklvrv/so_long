@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:05:43 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/03 14:19:01 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:54:28 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	get_height(char **map_splitted)
 	return (i);
 }
 
-int	get_pos(t_game *data, char object, char axes)
+int	get_pos(t_game *data, char object, char axis)
 {
 	int	x;
 	int	y;
@@ -61,6 +61,28 @@ int	get_pos(t_game *data, char object, char axes)
 		y++;
 	}
 	return (0);
+}
+
+int count_loot(t_game *data)
+{
+    int x;
+    int y;
+    int count;
+
+    y = 0;
+    count = 0;
+	while (data->map[y])
+	{
+		x = 0;
+		while (data->map[y][x])
+		{
+			if (data->map[y][x] == 'C')
+                count++;
+			x++;
+		}
+		y++;
+	}
+	return (count);
 }
 
 char	*join_together(char *s1, char *s2)

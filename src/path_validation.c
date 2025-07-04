@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 14:19:44 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/03 14:40:37 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/04 11:29:18 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	flood_fill(char **map_dup, int x, int y)
 	}
 	if (map_dup[y][x] == '0' || map_dup[y][x] == 'C' || map_dup[y][x] == 'P')
 		map_dup[y][x] = '~';
-	print_args(map_dup);
+	//print_args(map_dup);
 	flood_fill(map_dup, x - 1, y); // up
 	flood_fill(map_dup, x + 1, y); // ))
 	flood_fill(map_dup, x, y - 1); // left
