@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/04 21:13:39 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/04 23:25:12 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	start_game(t_game *game)
 			true);
 	if (!game->mlx)
 		error_and_destroy("Window creation failed", game);
-	game->textures = init_textures(game->mlx, game);
+	game->textures = init_textures(game);
 	load_map(game);
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	mlx_key_hook(game->mlx, move_hook, game);
@@ -68,7 +68,7 @@ void	action(t_game *game, char dir)
 	{
 		game->ppos_x += 1;
 		game->textures->player->instances[0].x += PX;
-		printf("Moved to: (%d, %d)\n", game->ppos_x, game->ppos_y);
+		//printf("Moved to: (%d, %d)\n", game->ppos_x, game->ppos_y);
 	}
 }
 
@@ -118,18 +118,23 @@ void	load_rest(t_game *game, int x, int y)
 		error_and_destroy("Loading failed", game);
 }
 
-t_textures	*init_textures(mlx_t *mlx, t_game *game)
+t_textures	*init_textures(t_game *game)
 {
 	t_textures	*textures;
 
 	textures = malloc(sizeof(t_textures));
 	if (textures == NULL)
 		error_and_destroy("Malloc failed in textures init", game);
-	load_floor(mlx, textures, game);
-	load_walls(mlx, textures, game);
-	load_player(mlx, textures, game);
-	load_loot(mlx, textures, game);
-	load_exit(mlx, textures, game);
+    textures->floor = NULL;
+    textures->wall = NULL;
+    textures->player = NULL;
+    textures->exit = NULL;
+    textures->collect = NULL;
+	load_floor(textures, game);
+	load_walls(textures, game);
+	load_player(textures, game);
+	load_loot(textures, game);
+	load_exit(textures, game);
 	return (textures);
 }
 
