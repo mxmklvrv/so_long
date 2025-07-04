@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/04 21:12:01 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/04 23:18:00 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int				main(int ac, char **av);
 // init data
 t_game			*get_basic_data(char *input);
 t_game			*init_basic_data(char **map_splitted);
-t_textures		*init_textures(mlx_t *mlx, t_game *game);
+t_textures		*init_textures(t_game *game);
 
 // map validation
 char			*process_map(char *input);
@@ -82,11 +82,11 @@ void			start_game(t_game *game);
 void			load_map(t_game *game);
 void			load_rest(t_game *game, int x, int y);
 
-void			load_floor(mlx_t *mlx, t_textures *textures, t_game *game);
-void			load_exit(mlx_t *mlx, t_textures *textures, t_game *game);
-void			load_loot(mlx_t *mlx, t_textures *textures, t_game *game);
-void			load_player(mlx_t *mlx, t_textures *textures, t_game *game);
-void			load_walls(mlx_t *mlx, t_textures *textures, t_game *game);
+void			load_floor(t_textures *textures, t_game *game);
+void			load_exit(t_textures *textures, t_game *game);
+void			load_loot(t_textures *textures, t_game *game);
+void			load_player(t_textures *textures, t_game *game);
+void			load_walls(t_textures *textures, t_game *game);
 
 // helpers
 char			*join_together(char *s1, char *s2);
