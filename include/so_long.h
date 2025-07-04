@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/03 21:37:41 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:54:26 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,6 @@ void			print_args(char **argv);
 // main
 int				main(int ac, char **av);
 
-// terminal input check
-void			check_command_line(int ac, char **av);
-
 // init data
 t_game			*get_basic_data(char *input);
 t_game			*init_basic_data(char **map_splitted);
@@ -97,7 +94,8 @@ void			load_walls(mlx_t *mlx, t_textures *textures, t_game *game);
 char			*join_together(char *s1, char *s2);
 void			check_command_line(int ac, char **av);
 int				get_height(char **map_splitted);
-int				get_pos(t_game *data, char object, char axes);
+int				get_pos(t_game *data, char object, char axis);
+int count_loot(t_game *data);
 
 // error and free handling
 void			error_message(char *message);
