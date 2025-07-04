@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/04 23:25:12 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/05 00:34:53 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,25 @@ void	action(t_game *game, char dir)
 	if ((dir == 'r') && (game->map[game->ppos_y][game->ppos_x + 1] != '1'))
 	{
 		game->ppos_x += 1;
-		game->textures->player->instances[0].x += PX;
+		//game->textures->player->instances[0].x += PX;
 		//printf("Moved to: (%d, %d)\n", game->ppos_x, game->ppos_y);
+        redraw_player(game);
 	}
 }
+void    redraw_player(t_game *game)
+{
+    if(game->textures->player)
+        mlx_delete_image(game->mlx, game->textures->player);
+    load_player(game->textures, game);
+    mlx_image_to_window(game->mlx, game->textures->player, game->ppos_x * PX, game->ppos_y * PX);
+}
+
+
+
+
+
+
+
 
 
 void	load_map(t_game *game)
