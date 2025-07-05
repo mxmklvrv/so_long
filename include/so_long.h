@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/05 15:29:11 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/05 17:24:59 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_textures
 	mlx_image_t		*collect;
 
 	mlx_texture_t	*player_t;
+	mlx_texture_t	*floor_t;
 
 }					t_textures;
 
@@ -102,6 +103,7 @@ int					count_loot(t_game *data);
 void				move_hook(mlx_key_data_t keydata, void *param);
 void				action(t_game *game, char dir);
 void				redraw_player(t_game *game);
+void				game_status(t_game *game);
 
 // error and free handling
 void				error_message(char *message);

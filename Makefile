@@ -6,7 +6,7 @@
 #    By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/26 13:36:29 by mklevero          #+#    #+#              #
-#    Updated: 2025/07/04 17:07:38 by mklevero         ###   ########.fr        #
+#    Updated: 2025/07/05 16:11:25 by mklevero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 $(NAME): $(OBJ) $(LIBFT) $(MLX42)
 		$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX_LIBS) -o $(NAME)
 clean:
-		rm -f $(OBJ)
+		rm -rf $(OBJ_DIR)
 		make clean -C $(LIBFT_DIR)
 fclean: clean
 		rm -f $(NAME) $(LIBFT)

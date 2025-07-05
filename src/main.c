@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/05 15:28:54 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/05 17:49:16 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,25 +75,57 @@ void	action(t_game *game, char dir)
 		game->ppos_x += 1;
 		redraw_player(game);
 	}
-	if ((dir == 'l') && (game->map[game->ppos_y][game->ppos_x - 1] != '1'))
+	else if ((dir == 'l') && (game->map[game->ppos_y][game->ppos_x - 1] != '1'))
 	{
 		game->ppos_x -= 1;
 		redraw_player(game);
 	}
-	if ((dir == 'u') && (game->map[game->ppos_y - 1][game->ppos_x] != '1'))
+	else if ((dir == 'u') && (game->map[game->ppos_y - 1][game->ppos_x] != '1'))
 	{
 		game->ppos_y -= 1;
 		redraw_player(game);
 	}
-	if ((dir == 'd') && (game->map[game->ppos_y + 1][game->ppos_x + 1] != '1'))
+	else if ((dir == 'd') && (game->map[game->ppos_y + 1][game->ppos_x] != '1'))
 	{
 		game->ppos_y += 1;
 		redraw_player(game);
+	}
+	game_status(game);
+}
+
+void	game_status(t_game *game)
+{
+	int	control;
+
+	control = 0;
+	if (game->map[game->ppos_y][game->ppos_x] == 'C')
+	{
+		control = mlx_image_to_window(game->mlx, game->textures->floor,
+				game->ppos_x * PX, game->ppos_y * PX);
+		if (control < 0)
+			error_and_destroy("Failed to redraw floor.", game);
+		redraw_player(game);
+		ft_printf("Food eaten\n");
+		game->looted++;
+		game->map[game->ppos_y][game->ppos_x] = '0';
+	}
+	if (game->map[game->ppos_y][game->ppos_x] == 'E')
+	{
+		if (game->loot == game->looted)
+		{
+			ft_printf("All eaten");
+			error_and_destroy("success", game);
+		}
+		else
+			ft_printf("Still some food to eat");
 	}
 }
 
 void	redraw_player(t_game *game)
 {
+	int	control;
+
+	control = 0;
 	if (game->textures->player)
 		mlx_delete_image(game->mlx, game->textures->player);
 	game->textures->player = mlx_texture_to_image(game->mlx,
@@ -101,8 +133,12 @@ void	redraw_player(t_game *game)
 	if (game->textures->player == NULL)
 		error_and_destroy("Failed to redraw player", game);
 	mlx_resize_image(game->textures->player, PX, PX);
-	mlx_image_to_window(game->mlx, game->textures->player, game->ppos_x * PX,
-		game->ppos_y * PX);
+	control = mlx_image_to_window(game->mlx, game->textures->player,
+			game->ppos_x * PX, game->ppos_y * PX);
+	if (control < 0)
+		error_and_destroy("Failed to redraw player.", game);
+	game->steps++;
+	ft_printf("Number of steps: %d\n", game->steps);
 }
 
 void	load_map(t_game *game)
@@ -206,6 +242,8 @@ t_game	*init_basic_data(char **map_splitted)
 	data->epos_x = get_pos(data, 'E', 'x');
 	data->epos_y = get_pos(data, 'E', 'y');
 	data->loot = count_loot(data);
+	data->looted = 0;
+	data->steps = 0;
 	return (data);
 }
 

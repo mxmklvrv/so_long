@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 15:52:15 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/05 15:23:02 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/05 17:02:29 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	load_floor(t_textures *textures, t_game *game)
 	floor = mlx_load_png("./img/pol2.png");
 	if (floor == NULL)
 		error_and_destroy("Loading floor failed", game);
+	textures->floor_t = floor;
 	textures->floor = mlx_texture_to_image(game->mlx, floor);
 	if (textures->floor == NULL)
 	{
@@ -77,7 +78,7 @@ void	load_floor(t_textures *textures, t_game *game)
 		error_and_destroy("Loading texture to img failed", game);
 	}
 	mlx_resize_image(textures->floor, PX, PX);
-	mlx_delete_texture(floor);
+	//mlx_delete_texture(floor);
 }
 
 void	load_player(t_textures *textures, t_game *game)

@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:32:50 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/02 18:03:09 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/05 16:05:32 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 #  define BUFFER_SIZE 69
 # endif
 
+# define BASE16U "0123456789ABCDEF"
+# define BASE16L "0123456789abcdef"
+
+# include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -80,5 +84,16 @@ char				*gnl_ft_strdup(const char *s);
 char				*gnl_ft_strchr(const char *s, int c);
 char				*gnl_ft_strjoin(char const *s1, char const *s2);
 void				gnl_clear(void);
+
+// ft_printf
+
+int					ft_printf(const char *format, ...);
+int					ftpf_putchar(int c);
+int					ftpf_putstr(const char *str);
+int					ftpf_putnum(long n);
+int					ftpf_putnum_unsigned(unsigned int n);
+int					ftpf_base(unsigned long n, unsigned long base, char *str);
+int					ftpf_ptr(void *ptr);
+int					pf_check_format(const char *format, va_list *args);
 
 #endif
