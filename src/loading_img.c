@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 15:52:15 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/04 23:22:14 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/05 12:11:57 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,3 +96,23 @@ void	load_floor(t_textures *textures, t_game *game)
 	mlx_resize_image(textures->floor, PX, PX);
 	mlx_delete_texture(floor);
 }
+
+/*
+void	load_player(t_textures *textures, t_game *game)
+{
+	mlx_texture_t	*player;
+
+	player = mlx_load_png("./img/demon.png");
+	if (player == NULL)
+		error_and_destroy("Loading player failed", game);
+    textures->player_t = player;
+	textures->player = mlx_texture_to_image(game->mlx, player);
+	if (textures->player == NULL)
+	{
+		mlx_delete_texture(player);
+		error_and_destroy("Loading texture to img failed", game);
+	}
+	mlx_resize_image(textures->player, PX, PX);
+    //mlx_delete_texture(player); removed since we will reuse it 
+}
+*/

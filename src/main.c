@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/05 00:34:53 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/05 12:16:59 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,18 @@ void    redraw_player(t_game *game)
 }
 
 
+/*
+void    redraw_player(t_game *game)
+{
+    if(game->textures->player)
+        mlx_delete_image(game->mlx, game->textures->player);
+    game->textures->player = mlx_texture_to_img(game->mlx, game->textures->player_t);
+    if (game->textures->player == NULL)
+        error_and_destroy("Failed to redraw player", game);
+    mlx_resize_image(game->textures->player, PX, PX);
+    mlx_image_to_window(game->mlx, game->textures->player, game->ppos_x * PX, game->ppos_y * PX);
+}
+*/
 
 
 
