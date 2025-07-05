@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 15:52:15 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/05 12:11:57 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/05 15:23:02 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	load_exit(t_textures *textures, t_game *game)
 {
 	mlx_texture_t	*exit;
 
-	exit = mlx_load_png("./img/vihod2.png");
+	exit = mlx_load_png("./img/vihod.png");
 	if (exit == NULL)
 		error_and_destroy("Loading exit failed", game);
 	textures->exit = mlx_texture_to_image(game->mlx, exit);
@@ -46,23 +46,6 @@ void	load_loot(t_textures *textures, t_game *game)
 	mlx_delete_texture(loot);
 }
 
-void	load_player(t_textures *textures, t_game *game)
-{
-	mlx_texture_t	*player;
-
-	player = mlx_load_png("./img/demon.png");
-	if (player == NULL)
-		error_and_destroy("Loading player failed", game);
-	textures->player = mlx_texture_to_image(game->mlx, player);
-	if (textures->player == NULL)
-	{
-		mlx_delete_texture(player);
-		error_and_destroy("Loading texture to img failed", game);
-	}
-	mlx_resize_image(textures->player, PX, PX);
-	mlx_delete_texture(player);
-}
-
 void	load_walls(t_textures *textures, t_game *game)
 {
 	mlx_texture_t	*wall;
@@ -84,7 +67,7 @@ void	load_floor(t_textures *textures, t_game *game)
 {
 	mlx_texture_t	*floor;
 
-	floor = mlx_load_png("./img/hui.png");
+	floor = mlx_load_png("./img/pol2.png");
 	if (floor == NULL)
 		error_and_destroy("Loading floor failed", game);
 	textures->floor = mlx_texture_to_image(game->mlx, floor);
@@ -97,7 +80,6 @@ void	load_floor(t_textures *textures, t_game *game)
 	mlx_delete_texture(floor);
 }
 
-/*
 void	load_player(t_textures *textures, t_game *game)
 {
 	mlx_texture_t	*player;
@@ -105,7 +87,7 @@ void	load_player(t_textures *textures, t_game *game)
 	player = mlx_load_png("./img/demon.png");
 	if (player == NULL)
 		error_and_destroy("Loading player failed", game);
-    textures->player_t = player;
+	textures->player_t = player;
 	textures->player = mlx_texture_to_image(game->mlx, player);
 	if (textures->player == NULL)
 	{
@@ -113,6 +95,5 @@ void	load_player(t_textures *textures, t_game *game)
 		error_and_destroy("Loading texture to img failed", game);
 	}
 	mlx_resize_image(textures->player, PX, PX);
-    //mlx_delete_texture(player); removed since we will reuse it 
+	// mlx_delete_texture(player); removed since we will reuse it
 }
-*/

@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/05 14:54:05 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/05 15:28:54 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ void	move_hook(mlx_key_data_t keydata, void *param)
 	}
 	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
 		action(game, 'r');
+	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
+		action(game, 'l');
+	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
+		action(game, 'u');
+	if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
+		action(game, 'd');
 }
 
 void	action(t_game *game, char dir)
@@ -67,26 +73,30 @@ void	action(t_game *game, char dir)
 	if ((dir == 'r') && (game->map[game->ppos_y][game->ppos_x + 1] != '1'))
 	{
 		game->ppos_x += 1;
-		// game->textures->player->instances[0].x += PX;
-		// printf("Moved to: (%d, %d)\n", game->ppos_x, game->ppos_y);
+		redraw_player(game);
+	}
+	if ((dir == 'l') && (game->map[game->ppos_y][game->ppos_x - 1] != '1'))
+	{
+		game->ppos_x -= 1;
+		redraw_player(game);
+	}
+	if ((dir == 'u') && (game->map[game->ppos_y - 1][game->ppos_x] != '1'))
+	{
+		game->ppos_y -= 1;
+		redraw_player(game);
+	}
+	if ((dir == 'd') && (game->map[game->ppos_y + 1][game->ppos_x + 1] != '1'))
+	{
+		game->ppos_y += 1;
 		redraw_player(game);
 	}
 }
+
 void	redraw_player(t_game *game)
 {
 	if (game->textures->player)
 		mlx_delete_image(game->mlx, game->textures->player);
-	load_player(game->textures, game);
-	mlx_image_to_window(game->mlx, game->textures->player, game->ppos_x * PX,
-		game->ppos_y * PX);
-}
-
-/*
-void	redraw_player(t_game *game)
-{
-	if(game->textures->player)
-		mlx_delete_image(game->mlx, game->textures->player);
-	game->textures->player = mlx_texture_to_img(game->mlx,
+	game->textures->player = mlx_texture_to_image(game->mlx,
 			game->textures->player_t);
 	if (game->textures->player == NULL)
 		error_and_destroy("Failed to redraw player", game);
@@ -94,7 +104,6 @@ void	redraw_player(t_game *game)
 	mlx_image_to_window(game->mlx, game->textures->player, game->ppos_x * PX,
 		game->ppos_y * PX);
 }
-*/
 
 void	load_map(t_game *game)
 {
