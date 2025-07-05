@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:41:04 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/05 17:40:43 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/05 19:29:38 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,5 @@ void	free_textures(t_game *game)
 		mlx_delete_image(game->mlx, game->textures->collect);
 	if (game->textures->player_t)
 		mlx_delete_texture(game->textures->player_t);
-	if (game->textures->floor_t)
-		mlx_delete_texture(game->textures->floor_t);
 	free(game->textures);
 }

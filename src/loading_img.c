@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 15:52:15 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/05 17:02:29 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/05 19:41:42 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	load_exit(t_textures *textures, t_game *game)
 {
 	mlx_texture_t	*exit;
 
-	exit = mlx_load_png("./img/vihod.png");
+	exit = mlx_load_png("./img/vihod3.png");
 	if (exit == NULL)
 		error_and_destroy("Loading exit failed", game);
 	textures->exit = mlx_texture_to_image(game->mlx, exit);
@@ -33,7 +33,7 @@ void	load_loot(t_textures *textures, t_game *game)
 {
 	mlx_texture_t	*loot;
 
-	loot = mlx_load_png("./img/jazo.png");
+	loot = mlx_load_png("./img/obj3.png");
 	if (loot == NULL)
 		error_and_destroy("Loading collectable failed", game);
 	textures->collect = mlx_texture_to_image(game->mlx, loot);
@@ -42,7 +42,7 @@ void	load_loot(t_textures *textures, t_game *game)
 		mlx_delete_texture(loot);
 		error_and_destroy("Loading texture to img failed", game);
 	}
-	mlx_resize_image(textures->collect, PX, PX);
+	mlx_resize_image(textures->collect, (PX * 3) / 4, (PX * 3) / 4);
 	mlx_delete_texture(loot);
 }
 
@@ -70,7 +70,6 @@ void	load_floor(t_textures *textures, t_game *game)
 	floor = mlx_load_png("./img/pol2.png");
 	if (floor == NULL)
 		error_and_destroy("Loading floor failed", game);
-	textures->floor_t = floor;
 	textures->floor = mlx_texture_to_image(game->mlx, floor);
 	if (textures->floor == NULL)
 	{
@@ -78,7 +77,7 @@ void	load_floor(t_textures *textures, t_game *game)
 		error_and_destroy("Loading texture to img failed", game);
 	}
 	mlx_resize_image(textures->floor, PX, PX);
-	//mlx_delete_texture(floor);
+	mlx_delete_texture(floor);
 }
 
 void	load_player(t_textures *textures, t_game *game)

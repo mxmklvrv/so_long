@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/05 17:49:16 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/05 19:45:23 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(int ac, char **av)
 	check_command_line(ac, av);
 	game = get_basic_data(av[1]);
 	start_game(game);
+	error_and_destroy("Escape prozhat", game);
 	free(game); // added for now.
 	return (0); // remove
 }
@@ -54,10 +55,7 @@ void	move_hook(mlx_key_data_t keydata, void *param)
 
 	game = param;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-	{
 		mlx_close_window(game->mlx);
-		mlx_terminate(game->mlx); // or change it
-	}
 	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
 		action(game, 'r');
 	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
@@ -180,8 +178,8 @@ void	load_rest(t_game *game, int x, int y)
 		control = mlx_image_to_window(game->mlx, game->textures->exit, x * PX, y
 				* PX);
 	else if (game->map[y][x] == 'C')
-		control = mlx_image_to_window(game->mlx, game->textures->collect, x
-				* PX, y * PX); // make smaller
+		control = mlx_image_to_window(game->mlx, game->textures->collect, x * PX
+				+ PX / 6, y * PX + PX / 6); // make smaller
 	if (control < 0)
 		error_and_destroy("Loading failed", game);
 }

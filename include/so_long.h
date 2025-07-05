@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/05 17:24:59 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/05 19:29:58 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_textures
 	mlx_image_t		*collect;
 
 	mlx_texture_t	*player_t;
-	mlx_texture_t	*floor_t;
 
 }					t_textures;
 
