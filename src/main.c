@@ -6,12 +6,11 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/07 13:02:01 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/07 15:15:33 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 int	main(int ac, char **av)
 {
@@ -20,10 +19,9 @@ int	main(int ac, char **av)
 	check_command_line(ac, av);
 	game = get_basic_data(av[1]);
 	start_game(game);
-    early_termination(game);
+	early_termination(game);
 	return (0);
 }
-
 
 void	start_game(t_game *game)
 {
@@ -99,9 +97,9 @@ void	game_status(t_game *game)
 	if (game->map[game->ppos_y][game->ppos_x] == 'E')
 	{
 		if (game->loot == game->looted)
-		    annihilate("All eaten!", game, 0);
+			annihilate("All eaten ", game, 0);
 		else
-			ft_printf("Still some food to eat");
+			ft_printf("Still some food to eat\n");
 	}
 }
 
@@ -165,7 +163,7 @@ void	load_rest(t_game *game, int x, int y)
 				* PX);
 	else if (game->map[y][x] == 'C')
 		control = mlx_image_to_window(game->mlx, game->textures->collect, x * PX
-				+ PX / 6, y * PX + PX / 6); 
+				+ PX / 6, y * PX + PX / 6);
 	if (control < 0)
 		annihilate("Loading failed", game, 1);
 }
@@ -176,7 +174,7 @@ t_textures	*init_textures(t_game *game)
 
 	textures = malloc(sizeof(t_textures));
 	if (textures == NULL)
-		annihilate("Malloc failed in textures init", game);
+		annihilate("Malloc failed in textures init", game, 1);
 	textures->floor = NULL;
 	textures->wall = NULL;
 	textures->player = NULL;
@@ -204,7 +202,7 @@ t_game	*get_basic_data(char *input)
 	free(map_in_line);
 	basic_data = init_basic_data(map_splitted);
 	validate_path(basic_data);
-	return (basic_data); 
+	return (basic_data);
 }
 
 t_game	*init_basic_data(char **map_splitted)
