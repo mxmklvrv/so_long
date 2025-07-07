@@ -6,24 +6,12 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/05 19:45:23 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/07 13:02:01 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	print_args(char **argv)
-{
-	int	i;
-
-	i = 0;
-	while (argv[i])
-	{
-		printf("argv[%d]: |%s|\n", i, argv[i]);
-		i++;
-	}
-	printf("\n\n");
-}
 
 int	main(int ac, char **av)
 {
@@ -32,16 +20,17 @@ int	main(int ac, char **av)
 	check_command_line(ac, av);
 	game = get_basic_data(av[1]);
 	start_game(game);
-	error_and_destroy("Escape prozhat", game);
-	free(game); // added for now.
-	return (0); // remove
+    early_termination(game);
+	return (0);
 }
+
+
 void	start_game(t_game *game)
 {
 	game->mlx = mlx_init(game->map_width * PX, game->map_height * PX, "so_long",
 			true);
 	if (!game->mlx)
-		error_and_destroy("Window creation failed", game);
+		annihilate("Window creation failed", game, 1);
 	game->textures = init_textures(game);
 	load_map(game);
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
@@ -101,7 +90,7 @@ void	game_status(t_game *game)
 		control = mlx_image_to_window(game->mlx, game->textures->floor,
 				game->ppos_x * PX, game->ppos_y * PX);
 		if (control < 0)
-			error_and_destroy("Failed to redraw floor.", game);
+			annihilate("Failed to redraw floor.", game, 1);
 		redraw_player(game);
 		ft_printf("Food eaten\n");
 		game->looted++;
@@ -110,10 +99,7 @@ void	game_status(t_game *game)
 	if (game->map[game->ppos_y][game->ppos_x] == 'E')
 	{
 		if (game->loot == game->looted)
-		{
-			ft_printf("All eaten");
-			error_and_destroy("success", game);
-		}
+		    annihilate("All eaten!", game, 0);
 		else
 			ft_printf("Still some food to eat");
 	}
@@ -129,12 +115,12 @@ void	redraw_player(t_game *game)
 	game->textures->player = mlx_texture_to_image(game->mlx,
 			game->textures->player_t);
 	if (game->textures->player == NULL)
-		error_and_destroy("Failed to redraw player", game);
+		annihilate("Failed to redraw player", game, 1);
 	mlx_resize_image(game->textures->player, PX, PX);
 	control = mlx_image_to_window(game->mlx, game->textures->player,
 			game->ppos_x * PX, game->ppos_y * PX);
 	if (control < 0)
-		error_and_destroy("Failed to redraw player.", game);
+		annihilate("Failed to redraw player.", game, 1);
 	game->steps++;
 	ft_printf("Number of steps: %d\n", game->steps);
 }
@@ -155,7 +141,7 @@ void	load_map(t_game *game)
 			control = mlx_image_to_window(game->mlx, game->textures->floor, x
 					* PX, y * PX);
 			if (control < 0)
-				error_and_destroy("Loading background failed", game);
+				annihilate("Loading background failed", game, 1);
 			load_rest(game, x, y);
 			x++;
 		}
@@ -179,9 +165,9 @@ void	load_rest(t_game *game, int x, int y)
 				* PX);
 	else if (game->map[y][x] == 'C')
 		control = mlx_image_to_window(game->mlx, game->textures->collect, x * PX
-				+ PX / 6, y * PX + PX / 6); // make smaller
+				+ PX / 6, y * PX + PX / 6); 
 	if (control < 0)
-		error_and_destroy("Loading failed", game);
+		annihilate("Loading failed", game, 1);
 }
 
 t_textures	*init_textures(t_game *game)
@@ -190,7 +176,7 @@ t_textures	*init_textures(t_game *game)
 
 	textures = malloc(sizeof(t_textures));
 	if (textures == NULL)
-		error_and_destroy("Malloc failed in textures init", game);
+		annihilate("Malloc failed in textures init", game);
 	textures->floor = NULL;
 	textures->wall = NULL;
 	textures->player = NULL;
@@ -218,8 +204,7 @@ t_game	*get_basic_data(char *input)
 	free(map_in_line);
 	basic_data = init_basic_data(map_splitted);
 	validate_path(basic_data);
-	// free_map(map_splitted);
-	return (basic_data); // remove
+	return (basic_data); 
 }
 
 t_game	*init_basic_data(char **map_splitted)

@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 14:19:44 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/04 11:29:18 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/07 12:27:48 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	validate_path(t_game *basic_data)
 	i = 0;
 	map_dup = duplicate(basic_data);
 	if (map_dup == NULL)
-		error_and_destroy("Malloc failed during path validation", basic_data);
+		annihilate("Malloc failed during path validation", basic_data, 1);
 	flood_fill(map_dup, basic_data->ppos_x, basic_data->ppos_y);
 	while (i < basic_data->map_height)
 	{
@@ -32,7 +32,7 @@ void	validate_path(t_game *basic_data)
 				&& map_dup[i][j] != '~')
 			{
 				free_map(map_dup);
-				error_and_destroy("Cannot find a valid path", basic_data);
+				annihilate("Cannot find a valid path", basic_data, 1);
 			}
 			j++;
 		}
@@ -52,11 +52,10 @@ void	flood_fill(char **map_dup, int x, int y)
 	}
 	if (map_dup[y][x] == '0' || map_dup[y][x] == 'C' || map_dup[y][x] == 'P')
 		map_dup[y][x] = '~';
-	//print_args(map_dup);
-	flood_fill(map_dup, x - 1, y); // up
-	flood_fill(map_dup, x + 1, y); // ))
-	flood_fill(map_dup, x, y - 1); // left
-	flood_fill(map_dup, x, y + 1); // right
+	flood_fill(map_dup, x - 1, y);
+	flood_fill(map_dup, x + 1, y);
+	flood_fill(map_dup, x, y - 1);
+	flood_fill(map_dup, x, y + 1);
 }
 
 char	**duplicate(t_game *basic_data)
