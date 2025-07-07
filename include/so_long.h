@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/05 19:29:58 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/07 13:05:08 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ typedef struct s_game
 
 }					t_game;
 
-// UDALI ETO
-void				print_args(char **argv);
 
 // main
 int					main(int ac, char **av);
@@ -104,12 +102,13 @@ void				action(t_game *game, char dir);
 void				redraw_player(t_game *game);
 void				game_status(t_game *game);
 
-// error and free handling
+// error free exit
 void				error_message(char *message);
 void				error_on_validation(char *message, char *str);
-void				error_and_destroy(char *message, t_game *game);
+void				annihilate(char *message, t_game *game, int decider);
 void				free_map(char **map_splitted);
 void				gnl_and_close(int fd);
 void				free_textures(t_game *game);
+void    early_termination(t_game *game);
 
 #endif
