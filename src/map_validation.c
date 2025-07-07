@@ -6,11 +6,40 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 17:32:58 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/07 17:00:27 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/07 19:17:14 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+char	*process_map(char *input)
+{
+	int		fd;
+	char	*solo;
+	char	*joined;
+	char	*tempo;
+
+	fd = open(input, O_RDONLY);
+	if (fd == -1)
+		error_message("Cannot open file.");
+	joined = NULL;
+	solo = get_next_line(fd);
+	while (solo)
+	{
+		tempo = join_together(joined, solo);
+		free(solo);
+		if (tempo == NULL)
+		{
+			free(joined);
+			gnl_and_close(fd);
+			error_message("Malloc failed.");
+		}
+		joined = tempo;
+		solo = get_next_line(fd);
+	}
+	gnl_and_close(fd);
+	return (joined);
+}
 
 void	validate_map(char *map_in_line)
 {
@@ -77,21 +106,4 @@ void	check_valid_input(char *contents)
 	}
 	if (player != 1 || exit != 1 || collectible == 0)
 		error_on_validation("PEC validation failed.", contents);
-}
-
-void	check_minimum_rows(char *contents)
-{
-	int	i;
-	int	count_nl;
-
-	i = 0;
-	count_nl = 0;
-	while (contents[i])
-	{
-		if (contents[i] == '\n')
-			count_nl++;
-		i++;
-	}
-	if (count_nl < 2)
-		error_on_validation("Not enough rows for map.", contents);
 }

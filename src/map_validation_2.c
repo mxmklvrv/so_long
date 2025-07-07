@@ -6,11 +6,30 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 18:59:52 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/07 17:00:00 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/07 20:01:21 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	check_minimum_rows(char *contents)
+{
+	int	i;
+	int	count_nl;
+
+	i = 0;
+	count_nl = 0;
+	while (contents[i])
+	{
+		if (contents[i] == '\n')
+			count_nl++;
+		i++;
+	}
+	if (count_nl < 2)
+		error_on_validation("Not enough rows for map.", contents);
+	// if (count_nl > 24)
+	// 	error_on_validation("Map is too tall.", contents);
+}
 
 void	check_map_form(char *contents)
 {
@@ -25,6 +44,8 @@ void	check_map_form(char *contents)
 		first_row++;
 		i++;
 	}
+	// if (first_row > 61)
+	// 	error_on_validation("Map is too wide.", contents);
 	while (contents[i])
 	{
 		i++;
@@ -77,7 +98,8 @@ void	confirm_wall(char *contents, int start, int len, int decider)
 		while (i < len)
 		{
 			if (contents[start + i] != '1')
-				error_on_validation("First and last must be all 1.", contents);
+				error_on_validation("First and last rows must be filled with 1.",
+					contents);
 			i++;
 		}
 	}

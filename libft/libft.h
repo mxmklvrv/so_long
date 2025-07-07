@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:32:50 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/05 16:05:32 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/07 18:57:09 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ char				*gnl_ft_strdup(const char *s);
 char				*gnl_ft_strchr(const char *s, int c);
 char				*gnl_ft_strjoin(char const *s1, char const *s2);
 void				gnl_clear(void);
+char				*free_and_null(void);
 
 // ft_printf
 

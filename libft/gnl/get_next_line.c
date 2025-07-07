@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:48:33 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/02 18:21:06 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/07 18:57:39 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,7 @@ char	*ft_get_line(int fd, char *buffer)
 			break ;
 	}
 	if (byte_was_read < 0)
-	{
-		free(g_leftovers);
-		g_leftovers = NULL;
-		return (NULL);
-	}
+		return (free_and_null());
 	return (g_leftovers);
 }
 
@@ -75,12 +71,12 @@ char	*get_next_line(int fd)
 	result = NULL;
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
-		return (free(g_leftovers), g_leftovers = NULL, NULL);
+		return (free_and_null());
 	g_leftovers = ft_get_line(fd, buffer);
 	free(buffer);
 	buffer = NULL;
 	if (!g_leftovers)
-		return (free(g_leftovers), g_leftovers = NULL, NULL);
+		return (free_and_null());
 	result = g_leftovers;
 	g_leftovers = ft_save_leftovers(result);
 	return (result);
@@ -93,4 +89,13 @@ void	gnl_clear(void)
 		free(g_leftovers);
 		g_leftovers = NULL;
 	}
+}
+char	*free_and_null(void)
+{
+	if (g_leftovers)
+	{
+		free(g_leftovers);
+		g_leftovers = NULL;
+	}
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:49:24 by mklevero          #+#    #+#             */
-/*   Updated: 2025/06/26 16:34:46 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/07 18:38:48 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,3 @@ char	*gnl_ft_strjoin(char const *s1, char const *s2)
 	return (joined);
 }
 
-// size_t	ft_strlen(const char *s)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (s[i])
-// 		i++;
-// 	return (i);
-// }

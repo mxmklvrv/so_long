@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/07 16:56:58 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/07 19:37:10 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "MLX42/MLX42.h"
 # include "libft.h"
 # include <fcntl.h>
-# include <stdio.h> // remove
 # include <stdlib.h>
 # include <unistd.h>
 
