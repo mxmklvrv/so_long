@@ -13,6 +13,7 @@
 NAME = libft.a
 CC = cc -g
 CFLAGS = -Wall -Wextra -Werror
+HDR = libft.h
 
 
 SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
@@ -35,7 +36,7 @@ BONUSOBJ = $(BONUSSRCS:.c=.o)
 
 all: $(NAME) 
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(HDR)
 	ar rcs $(NAME) $(OBJ)
 
 %.o: %.c

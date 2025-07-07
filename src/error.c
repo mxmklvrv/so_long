@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:41:04 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/07 15:41:50 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/07 16:59:39 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	error_message(char *message)
 {
-	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd("\033[31mError\n", 2);
 	ft_putendl_fd(message, 2);
+	ft_putstr_fd("\033[0m", 2);
 	exit(1);
 }
 void	gnl_and_close(int fd)

@@ -6,7 +6,7 @@
 #    By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/26 13:36:29 by mklevero          #+#    #+#              #
-#    Updated: 2025/07/05 16:11:25 by mklevero         ###   ########.fr        #
+#    Updated: 2025/07/07 15:50:55 by mklevero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 OBJ_DIR = obj/
 SRC_DIR = src/
-
+HDR = include/so_long.h libft/libft.h
 HEADERS = -I ./include -I $(MLX42_DIR)/include -I $(LIBFT_DIR)
 MLX_LIBS = $(MLX42) -ldl -lglfw -pthread -lm
 
@@ -48,7 +48,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@ $(HEADERS)
 
-$(NAME): $(OBJ) $(LIBFT) $(MLX42)
+$(NAME): $(OBJ) $(LIBFT) $(MLX42) $(HDR)
 		$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX_LIBS) -o $(NAME)
 clean:
 		rm -rf $(OBJ_DIR)

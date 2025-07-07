@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:05:43 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/04 15:04:09 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/07 16:20:48 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	check_command_line(int ac, char **av)
 	if (ac != 2)
 	{
 		if (ac < 2)
-			error_message("Not enough arguments");
+			error_message("Not enough arguments.");
 		else
-			error_message("Too much arguments");
+			error_message("Too much arguments.");
 	}
 	av_len = ft_strlen(av[1]);
 	if (av_len <= 4 || ft_strncmp(av[1] + av_len - 4, ".ber", 4) != 0)
-		error_message("Provide a valid .ber file");
+		error_message("Provide a valid .ber file.");
 }
 
 int	get_height(char **map_splitted)

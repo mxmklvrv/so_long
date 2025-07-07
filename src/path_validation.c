@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 14:19:44 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/07 12:27:48 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/07 16:20:21 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	validate_path(t_game *basic_data)
 	i = 0;
 	map_dup = duplicate(basic_data);
 	if (map_dup == NULL)
-		annihilate("Malloc failed during path validation", basic_data, 1);
+		annihilate("Malloc failed during path validation.", basic_data, 1);
 	flood_fill(map_dup, basic_data->ppos_x, basic_data->ppos_y);
 	while (i < basic_data->map_height)
 	{
@@ -32,7 +32,7 @@ void	validate_path(t_game *basic_data)
 				&& map_dup[i][j] != '~')
 			{
 				free_map(map_dup);
-				annihilate("Cannot find a valid path", basic_data, 1);
+				annihilate("Cannot find a valid path.", basic_data, 1);
 			}
 			j++;
 		}

@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 17:32:58 by mklevero          #+#    #+#             */
-/*   Updated: 2025/06/30 19:32:15 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/07 17:00:27 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ void	check_empty_lines(char *contents)
 
 	i = 0;
 	if (contents == NULL)
-		error_on_validation("Just an empty file", contents);
+		error_on_validation("Just an empty file.", contents);
 	if (contents[0] == '\n')
-		error_on_validation("An empty line detected", contents);
+		error_on_validation("An empty line detected.", contents);
 	while (contents[i])
 	{
 		if (contents[i] == '\n' && contents[i + 1] == '\n')
-			error_on_validation("Part of map is missing", contents);
+			error_on_validation("Part of map is missing.", contents);
 		i++;
 	}
 	if (contents[i - 1] == '\n')
-		error_on_validation("An empty line at the end", contents);
+		error_on_validation("An empty line at the end.", contents);
 }
 
 void	check_invalid_input(char *contents)
@@ -49,7 +49,7 @@ void	check_invalid_input(char *contents)
 	while (contents[i])
 	{
 		if (!ft_strchr("01PCE\n", contents[i]))
-			error_on_validation("Invalid char in the map", contents);
+			error_on_validation("Invalid char in the map.", contents);
 		i++;
 	}
 }
@@ -76,7 +76,7 @@ void	check_valid_input(char *contents)
 		i++;
 	}
 	if (player != 1 || exit != 1 || collectible == 0)
-		error_on_validation("PEC validation failed", contents);
+		error_on_validation("PEC validation failed.", contents);
 }
 
 void	check_minimum_rows(char *contents)
@@ -93,5 +93,5 @@ void	check_minimum_rows(char *contents)
 		i++;
 	}
 	if (count_nl < 2)
-		error_on_validation("Not enough rows for map", contents);
+		error_on_validation("Not enough rows for map.", contents);
 }

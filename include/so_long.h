@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/07 13:05:08 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/07 16:56:58 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct s_game
 	int				steps;
 
 }					t_game;
-
 
 // main
 int					main(int ac, char **av);
@@ -99,7 +98,7 @@ int					count_loot(t_game *data);
 // gameplay
 void				move_hook(mlx_key_data_t keydata, void *param);
 void				action(t_game *game, char dir);
-void				redraw_player(t_game *game);
+void				redraw_player(t_game *game, int decider);
 void				game_status(t_game *game);
 
 // error free exit
@@ -109,6 +108,6 @@ void				annihilate(char *message, t_game *game, int decider);
 void				free_map(char **map_splitted);
 void				gnl_and_close(int fd);
 void				free_textures(t_game *game);
-void    early_termination(t_game *game);
+void				early_termination(t_game *game);
 
 #endif

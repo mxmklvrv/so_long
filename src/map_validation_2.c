@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validaton_2.c                                  :+:      :+:    :+:   */
+/*   map_validation_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 18:59:52 by mklevero          #+#    #+#             */
-/*   Updated: 2025/06/30 19:32:00 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/07 17:00:00 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	check_map_form(char *contents)
 			i++;
 		}
 		if (first_row != next_row)
-			error_on_validation("Not a rectangular shape", contents);
+			error_on_validation("Not a rectangular shape.", contents);
 	}
 }
 
@@ -77,13 +77,13 @@ void	confirm_wall(char *contents, int start, int len, int decider)
 		while (i < len)
 		{
 			if (contents[start + i] != '1')
-				error_on_validation("First and last must be all 1", contents);
+				error_on_validation("First and last must be all 1.", contents);
 			i++;
 		}
 	}
 	else
 	{
 		if (contents[start] != '1' || contents[start + len - 1] != '1')
-			error_on_validation("Mid row must start&end with 1", contents);
+			error_on_validation("Mid row must start&end with 1.", contents);
 	}
 }
