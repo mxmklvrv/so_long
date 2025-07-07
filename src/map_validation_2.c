@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 18:59:52 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/07 20:01:21 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/07 20:31:43 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	check_minimum_rows(char *contents)
 	}
 	if (count_nl < 2)
 		error_on_validation("Not enough rows for map.", contents);
-	// if (count_nl > 24)
-	// 	error_on_validation("Map is too tall.", contents);
+	if (count_nl > 32)
+		error_on_validation("Map is too tall.", contents);
 }
 
 void	check_map_form(char *contents)
@@ -44,8 +44,8 @@ void	check_map_form(char *contents)
 		first_row++;
 		i++;
 	}
-	// if (first_row > 61)
-	// 	error_on_validation("Map is too wide.", contents);
+	if (first_row > 61)
+		error_on_validation("Map is too wide.", contents);
 	while (contents[i])
 	{
 		i++;
