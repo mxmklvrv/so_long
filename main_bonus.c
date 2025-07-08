@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 01:53:32 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 11:36:45 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,4 +155,15 @@ void	load_exit_closed(t_textures *textures, t_game *game)
 	}
 	mlx_resize_image(textures->exit_closed, PX, PX);
 	mlx_delete_texture(exit_closed);
+}
+
+void    steps_to_screen(t_game *game)
+{
+    char *count;
+    char *str;
+    
+    count = ft_itoa(game->steps);
+    if(count == NULL)
+        annihilate("Steps to screen failed.", game, 1);
+    
 }

@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 01:53:08 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 11:37:15 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ typedef struct s_textures
 	mlx_image_t		*floor;
 	mlx_image_t		*wall;
 	mlx_image_t		*player;
-    mlx_image_t		*player_left;
 	mlx_image_t		*exit;
 	mlx_image_t		*collect;
+
+    mlx_image_t		*player_left;
     mlx_image_t *demon;
     mlx_image_t *exit_closed;
+    mlx_image_t *steps_on_screen;
 
 	mlx_texture_t	*player_t;
     mlx_texture_t	*player_t_l;
