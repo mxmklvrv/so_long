@@ -6,7 +6,7 @@
 #    By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/26 13:36:29 by mklevero          #+#    #+#              #
-#    Updated: 2025/07/08 20:29:22 by mklevero         ###   ########.fr        #
+#    Updated: 2025/07/08 20:31:54 by mklevero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,11 @@ $(OBJ_BONUS_DIR)%.o: $(SRC_BONUS_DIR)%.c
 
 $(NAME): $(OBJ) $(LIBFT) $(MLX42) $(HDR)
 		$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX_LIBS) -o $(NAME)
+bonus: .bonus
+
+.bonus: $(OBJ_BONUS) $(LIBFT) $(MLX42)
+		$(CC) $(CFLAGS) $(OBJ_BONUS) $(LIBFT) $(MLX_LIBS) -o $(NAME_BONUS)
+		@touch .bonus
 clean:
 		rm -rf $(OBJ_DIR)
 		rm -rf $(OBJ_BONUS_DIR)
@@ -77,11 +82,5 @@ fclean: clean
 		rm -rf $(MLX42_DIR)/build
 
 re: fclean all
-
-bonus: .bonus
-
-.bonus: $(OBJ_BONUS) $(LIBFT) $(MLX42)
-		$(CC) $(CFLAGS) $(OBJ_BONUS) $(LIBFT) $(MLX_LIBS) -o $(NAME_BONUS)
-		@touch .bonus
 
 .PHONY: all clean fclean re 

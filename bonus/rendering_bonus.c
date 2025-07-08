@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:26:50 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 19:45:40 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 21:53:04 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	redraw_player(t_game *game, int decider)
 		steps_to_screen(game);
 	}
 }
+
 
 void	redraw_player_left(t_game *game, int decider)
 {
@@ -95,7 +96,7 @@ void	load_rest(t_game *game, int x, int y)
 		control = mlx_image_to_window(game->mlx, game->textures->player, x * PX,
 				y * PX);
 	else if (game->map[y][x] == 'D')
-		control = mlx_image_to_window(game->mlx, game->textures->demon, x * PX,
+		control = mlx_image_to_window(game->mlx, game->textures->flower, x * PX,
 				y * PX);
 	else if (game->map[y][x] == '1')
 		control = mlx_image_to_window(game->mlx, game->textures->wall, x * PX, y

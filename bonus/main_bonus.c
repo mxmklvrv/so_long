@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 19:27:41 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 22:01:44 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,19 +103,25 @@ void	load_bonus(t_textures *textures, t_game *game)
 {
 	textures->player_left = NULL;
 	textures->player_t_l = NULL;
-	textures->demon = NULL;
+	textures->flower = NULL;
 	textures->exit_closed = NULL;
 	textures->steps_on_screen = NULL;
+	textures->player_ate = NULL;
+	textures->player_ate_left = NULL;
+	textures->player_ta = NULL;
+	textures->player_ta_l = NULL;
 	load_player_left(textures, game);
-	load_demon(textures, game);
+	load_flower(textures, game);
 	load_exit_closed(textures, game);
+	load_player_ate(textures, game);
+	load_player_ate_left(textures, game);
 }
 
 void	load_player_left(t_textures *textures, t_game *game)
 {
 	mlx_texture_t	*player_left;
 
-	player_left = mlx_load_png("./img/demon_left.png");
+	player_left = mlx_load_png("./img/player_left.png");
 	if (player_left == NULL)
 		annihilate("Loading player left side failed.", game, 1);
 	textures->player_t_l = player_left;
@@ -125,21 +131,21 @@ void	load_player_left(t_textures *textures, t_game *game)
 	mlx_resize_image(textures->player_left, PX, PX);
 }
 
-void	load_demon(t_textures *textures, t_game *game)
+void	load_flower(t_textures *textures, t_game *game)
 {
-	mlx_texture_t	*demon;
+	mlx_texture_t	*flower;
 
-	demon = mlx_load_png("./img/flower.png");
-	if (demon == NULL)
+	flower = mlx_load_png("./img/flower.png");
+	if (flower == NULL)
 		annihilate("Loading demon failed.", game, 1);
-	textures->demon = mlx_texture_to_image(game->mlx, demon);
-	if (textures->demon == NULL)
+	textures->flower = mlx_texture_to_image(game->mlx, flower);
+	if (textures->flower == NULL)
 	{
-		mlx_delete_texture(demon);
+		mlx_delete_texture(flower);
 		annihilate("Loading texture to img failed.", game, 1);
 	}
-	mlx_resize_image(textures->demon, PX, PX);
-	mlx_delete_texture(demon);
+	mlx_resize_image(textures->flower, PX, PX);
+	mlx_delete_texture(flower);
 }
 
 void	load_exit_closed(t_textures *textures, t_game *game)
@@ -181,4 +187,33 @@ void	steps_to_screen(t_game *game)
 		annihilate("Steps to screen failed.", game, 1);
 	}
 	free(str);
+}
+
+void	load_player_ate(t_textures *textures, t_game *game)
+{
+	mlx_texture_t	*player_ate;
+
+	player_ate = mlx_load_png("./img/player_ate.png");
+	if (player_ate == NULL)
+		annihilate("Loading player ate failed.", game, 1);
+	textures->player_ta = player_ate;
+	textures->player_ate = mlx_texture_to_image(game->mlx, player_ate);
+	if (textures->player_ate == NULL)
+		annihilate("Loading texture to img player left side failed.", game, 1);
+	mlx_resize_image(textures->player_ate, PX, PX);
+}
+
+void	load_player_ate_left(t_textures *textures, t_game *game)
+{
+	mlx_texture_t	*player_ate_left;
+
+	player_ate_left = mlx_load_png("./img/player_ate_left.png");
+	if (player_ate_left == NULL)
+		annihilate("Loading player ate failed.", game, 1);
+	textures->player_ta_l = player_ate_left;
+	textures->player_ate_left = mlx_texture_to_image(game->mlx,
+			player_ate_left);
+	if (textures->player_ate_left == NULL)
+		annihilate("Loading texture to img player left side failed.", game, 1);
+	mlx_resize_image(textures->player_ate_left, PX, PX);
 }

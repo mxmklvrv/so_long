@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:32:41 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 16:04:35 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 22:00:32 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	free_textures(t_game *game)
 		mlx_delete_image(game->mlx, game->textures->player_left);
 	if (game->textures->exit_closed)
 		mlx_delete_image(game->mlx, game->textures->exit_closed);
-	if (game->textures->demon)
-		mlx_delete_image(game->mlx, game->textures->demon);
+	if (game->textures->flower)
+		mlx_delete_image(game->mlx, game->textures->flower);
 	if (game->textures->player_t_l)
 		mlx_delete_texture(game->textures->player_t_l);
 	if (game->textures->steps_on_screen)
