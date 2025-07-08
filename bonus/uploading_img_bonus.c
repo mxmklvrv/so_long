@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 15:52:15 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 16:06:00 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 16:30:34 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	load_exit(t_textures *textures, t_game *game)
 {
 	mlx_texture_t	*exit;
 
-	exit = mlx_load_png("./img/vihod3.png");
+	exit = mlx_load_png("./img/exit_open.png");
 	if (exit == NULL)
 		annihilate("Loading exit failed", game, 1);
 	textures->exit = mlx_texture_to_image(game->mlx, exit);

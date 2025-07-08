@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 16:05:04 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 19:27:41 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ t_game	*init_basic_data(char **map_splitted)
 	data->ppos_x = get_pos(data, 'P', 'x');
 	data->ppos_y = get_pos(data, 'P', 'y');
 	data->epos_x = get_pos(data, 'E', 'x');
-	data->epos_y = get_pos(data, 'E', 'x');
+	data->epos_y = get_pos(data, 'E', 'y');
 	data->loot = count_loot(data);
+	data->dir = 'r';
 	data->looted = 0;
 	data->steps = 0;
 	data->textures = NULL;
@@ -66,8 +67,8 @@ t_game	*init_basic_data(char **map_splitted)
 
 void	start_game(t_game *game)
 {
-	game->mlx = mlx_init(game->map_width * PX, game->map_height * PX, "so_long",
-			true);
+	game->mlx = mlx_init(game->map_width * PX, (game->map_height + 1) * PX,
+			"so_long", true);
 	if (!game->mlx)
 		annihilate("Window creation failed.", game, 1);
 	game->textures = init_textures(game);
@@ -103,6 +104,8 @@ void	load_bonus(t_textures *textures, t_game *game)
 	textures->player_left = NULL;
 	textures->player_t_l = NULL;
 	textures->demon = NULL;
+	textures->exit_closed = NULL;
+	textures->steps_on_screen = NULL;
 	load_player_left(textures, game);
 	load_demon(textures, game);
 	load_exit_closed(textures, game);
@@ -112,7 +115,7 @@ void	load_player_left(t_textures *textures, t_game *game)
 {
 	mlx_texture_t	*player_left;
 
-	player_left = mlx_load_png("./img/leftside.png");
+	player_left = mlx_load_png("./img/demon_left.png");
 	if (player_left == NULL)
 		annihilate("Loading player left side failed.", game, 1);
 	textures->player_t_l = player_left;
@@ -126,7 +129,7 @@ void	load_demon(t_textures *textures, t_game *game)
 {
 	mlx_texture_t	*demon;
 
-	demon = mlx_load_png("./img/pologotipa.png");
+	demon = mlx_load_png("./img/flower.png");
 	if (demon == NULL)
 		annihilate("Loading demon failed.", game, 1);
 	textures->demon = mlx_texture_to_image(game->mlx, demon);
@@ -170,9 +173,12 @@ void	steps_to_screen(t_game *game)
 		annihilate("Steps to screen failed.", game, 1);
 	if (game->textures->steps_on_screen)
 		mlx_delete_image(game->mlx, game->textures->steps_on_screen);
-	game->textures->steps_on_screen = mlx_put_string(game->mlx, str, слвеа,
-			справа);
+	game->textures->steps_on_screen = mlx_put_string(game->mlx, str,
+			(game->map_width * PX) / 2, game->map_height * PX);
 	if (game->textures->steps_on_screen == NULL)
+	{
+		free(str);
 		annihilate("Steps to screen failed.", game, 1);
+	}
 	free(str);
 }

@@ -6,7 +6,7 @@
 #    By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/26 13:36:29 by mklevero          #+#    #+#              #
-#    Updated: 2025/07/08 16:06:51 by mklevero         ###   ########.fr        #
+#    Updated: 2025/07/08 20:29:22 by mklevero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,7 @@ clean:
 		rm -f .bonus
 		make clean -C $(LIBFT_DIR)
 fclean: clean
-		rm -f $(NAME) $(LIBFT)
+		rm -f $(NAME) $(NAME_BONUS) $(LIBFT)
 		rm -rf $(MLX42_DIR)/build
 
 re: fclean all

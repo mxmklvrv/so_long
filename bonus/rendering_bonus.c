@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:26:50 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 16:05:30 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 19:45:40 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	redraw_player(t_game *game, int decider)
 	control = 0;
 	if (game->textures->player_left)
 		mlx_delete_image(game->mlx, game->textures->player_left);
+	if (game->textures->player)
+		mlx_delete_image(game->mlx, game->textures->player);
 	game->textures->player = mlx_texture_to_image(game->mlx,
 			game->textures->player_t);
 	if (game->textures->player == NULL)
@@ -31,7 +33,7 @@ void	redraw_player(t_game *game, int decider)
 	if (decider == 0)
 	{
 		game->steps++;
-		ft_printf("Number of steps: %d\n", game->steps);
+		steps_to_screen(game);
 	}
 }
 
@@ -42,6 +44,8 @@ void	redraw_player_left(t_game *game, int decider)
 	control = 0;
 	if (game->textures->player)
 		mlx_delete_image(game->mlx, game->textures->player);
+	if (game->textures->player_left)
+		mlx_delete_image(game->mlx, game->textures->player_left);
 	game->textures->player_left = mlx_texture_to_image(game->mlx,
 			game->textures->player_t_l);
 	if (game->textures->player_left == NULL)
@@ -54,7 +58,7 @@ void	redraw_player_left(t_game *game, int decider)
 	if (decider == 0)
 	{
 		game->steps++;
-		ft_printf("Number of steps: %d\n", game->steps);
+		steps_to_screen(game);
 	}
 }
 

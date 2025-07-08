@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 11:37:15 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 20:25:40 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ typedef struct s_textures
 	mlx_image_t		*exit;
 	mlx_image_t		*collect;
 
-    mlx_image_t		*player_left;
-    mlx_image_t *demon;
-    mlx_image_t *exit_closed;
-    mlx_image_t *steps_on_screen;
+	mlx_image_t		*player_left;
+	mlx_image_t		*demon;
+	mlx_image_t		*exit_closed;
+	mlx_image_t		*steps_on_screen;
 
 	mlx_texture_t	*player_t;
-    mlx_texture_t	*player_t_l;
+	mlx_texture_t	*player_t_l;
 
 }					t_textures;
 
@@ -49,12 +49,12 @@ typedef struct s_game
 	int				map_height;
 	int				ppos_x;
 	int				ppos_y;
-    int             epos_x;
-    int             epos_y;
+	int				epos_x;
+	int				epos_y;
 	int				loot;
 	int				looted;
 	int				steps;
-    
+	char			dir;
 
 }					t_game;
 
@@ -108,12 +108,15 @@ void				redraw_player(t_game *game, int decider);
 void				game_status(t_game *game);
 
 // bonus
-void	redraw_player_left(t_game *game, int decider);
-void load_bonus(t_textures *textures, t_game *game); 
-void load_player_left(t_textures *textures, t_game *game);
-void	load_demon(t_textures *textures, t_game *game);
-void	load_exit_closed(t_textures *textures, t_game *game);
-
+void				redraw_player_left(t_game *game, int decider);
+void				load_bonus(t_textures *textures, t_game *game);
+void				load_player_left(t_textures *textures, t_game *game);
+void				load_demon(t_textures *textures, t_game *game);
+void				load_exit_closed(t_textures *textures, t_game *game);
+void				bonus_status(t_game *game);
+void				steps_to_screen(t_game *game);
+void				check_face_dir_coll(t_game *game);
+void				check_face_dir_zero(t_game *game);
 
 // error free exit
 void				error_message(char *message);

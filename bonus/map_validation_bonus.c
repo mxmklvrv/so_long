@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 17:32:58 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 16:05:19 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 19:50:14 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,6 @@ void	check_valid_input(char *contents)
 			demon++;
 		i++;
 	}
-	if (player != 1 || exit != 1 || demon < 0 || collectible == 0)
+	if (player != 1 || exit != 1 || demon == 0 || collectible == 0)
 		error_on_validation("PECD validation failed.", contents);
 }
