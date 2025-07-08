@@ -6,11 +6,11 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:41:04 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/07 19:34:48 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 16:07:12 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 void	error_message(char *message)
 {

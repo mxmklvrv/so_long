@@ -6,11 +6,11 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:32:41 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/07 19:35:58 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 16:07:08 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 void	annihilate(char *message, t_game *game, int decider)
 {

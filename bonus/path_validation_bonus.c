@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path_validationbonus.c                             :+:      :+:    :+:   */
+/*   path_validation_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 14:19:44 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 01:53:44 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 16:05:26 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "../include/so_long_bonus.h"
 
 void	validate_path(t_game *basic_data)
 {

@@ -6,11 +6,11 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 13:37:08 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 16:05:04 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "../include/so_long_bonus.h"
 
 int	main(int ac, char **av)
 {
@@ -54,8 +54,8 @@ t_game	*init_basic_data(char **map_splitted)
 	data->map_height = get_height(map_splitted);
 	data->ppos_x = get_pos(data, 'P', 'x');
 	data->ppos_y = get_pos(data, 'P', 'y');
-    data->epos_x = get_pos(data, 'E', 'x');
-    data->epos_y = get_pos(data, 'E', 'x');
+	data->epos_x = get_pos(data, 'E', 'x');
+	data->epos_y = get_pos(data, 'E', 'x');
 	data->loot = count_loot(data);
 	data->looted = 0;
 	data->steps = 0;
@@ -86,7 +86,7 @@ t_textures	*init_textures(t_game *game)
 	textures->floor = NULL;
 	textures->wall = NULL;
 	textures->player = NULL;
-    textures->player_t = NULL;
+	textures->player_t = NULL;
 	textures->exit = NULL;
 	textures->collect = NULL;
 	load_floor(textures, game);
@@ -94,27 +94,26 @@ t_textures	*init_textures(t_game *game)
 	load_player(textures, game);
 	load_loot(textures, game);
 	load_exit(textures, game);
-    load_bonus(textures, game);
+	load_bonus(textures, game);
 	return (textures);
 }
 
-void load_bonus(t_textures *textures, t_game *game)
+void	load_bonus(t_textures *textures, t_game *game)
 {
-    textures->player_left = NULL;
-    textures->player_t_l = NULL;
-    textures->demon = NULL;
-    load_player_left(textures, game);
-    load_demon(textures, game);
-    load_exit_closed(textures, game);
+	textures->player_left = NULL;
+	textures->player_t_l = NULL;
+	textures->demon = NULL;
+	load_player_left(textures, game);
+	load_demon(textures, game);
+	load_exit_closed(textures, game);
 }
 
-
-void load_player_left(t_textures *textures, t_game *game)
+void	load_player_left(t_textures *textures, t_game *game)
 {
-    mlx_texture_t	*player_left;
-    
+	mlx_texture_t	*player_left;
+
 	player_left = mlx_load_png("./img/leftside.png");
-	if (player_l == NULL)
+	if (player_left == NULL)
 		annihilate("Loading player left side failed.", game, 1);
 	textures->player_t_l = player_left;
 	textures->player_left = mlx_texture_to_image(game->mlx, player_left);
@@ -157,19 +156,23 @@ void	load_exit_closed(t_textures *textures, t_game *game)
 	mlx_delete_texture(exit_closed);
 }
 
-void    steps_to_screen(t_game *game)
+void	steps_to_screen(t_game *game)
 {
-    char *count;
-    char *str;
-    
-    count = ft_itoa(game->steps);
-    if(count == NULL)
-        annihilate("Steps to screen failed.", game, 1);
-    str = ft_strjoin("MOVES: ", count);
-    if (str == NULL)
-        annihilate("Steps to screen failed.", game, 1);
-    if (game->textures->steps_on_screen)
-        mlx_delete_image(game->mlx, game->textures->steps_on_screen);
-    game->textures->steps_on_screen = mlx_put_string(game->mlx, str, слвеа, справа);
-    free(str);
+	char	*count;
+	char	*str;
+
+	count = ft_itoa(game->steps);
+	if (count == NULL)
+		annihilate("Steps to screen failed.", game, 1);
+	str = ft_strjoin("MOVES: ", count);
+	free(count);
+	if (str == NULL)
+		annihilate("Steps to screen failed.", game, 1);
+	if (game->textures->steps_on_screen)
+		mlx_delete_image(game->mlx, game->textures->steps_on_screen);
+	game->textures->steps_on_screen = mlx_put_string(game->mlx, str, слвеа,
+			справа);
+	if (game->textures->steps_on_screen == NULL)
+		annihilate("Steps to screen failed.", game, 1);
+	free(str);
 }

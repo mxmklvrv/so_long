@@ -6,11 +6,11 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 14:19:44 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/07 16:20:21 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 16:07:36 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 void	validate_path(t_game *basic_data)
 {

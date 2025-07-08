@@ -6,11 +6,11 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:05:43 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 01:53:28 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 16:04:54 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "../include/so_long_bonus.h"
 
 void	check_command_line(int ac, char **av)
 {

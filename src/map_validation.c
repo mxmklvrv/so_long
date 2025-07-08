@@ -6,11 +6,11 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 17:32:58 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/07 19:17:14 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 16:07:32 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 char	*process_map(char *input)
 {

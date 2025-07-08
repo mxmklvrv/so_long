@@ -6,11 +6,11 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:23:01 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 01:53:23 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 16:04:47 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "../include/so_long_bonus.h"
 
 void	move_hook(mlx_key_data_t keydata, void *param)
 {
@@ -52,29 +52,28 @@ void	action(t_game *game, char dir)
 		redraw_player(game, 0);
 	}
 	game_status(game);
-    bonus_status(game);
+	bonus_status(game);
 }
 
-void    bous_status(t_game *game)
+void	bous_status(t_game *game)
 {
-    int control;
+	int	control;
 
-    control = 0;
-    if (game->map[game->ppos_y][game->ppos_x] == 'D')
+	control = 0;
+	if (game->map[game->ppos_y][game->ppos_x] == 'D')
 	{
-		// анимация смерти мб? 
+		// анимация смерти мб?
 		ft_printf("You ate poisoned flower, gg ez))");
 		annihilate("\n", game, 0);
 	}
-    if (game->loot == game->looted)
-    {
-        control = mlx_image_to_window(game->mlx, game->textures->exit, game->epos_x * PX, game->epos_x * PX);
-        if (control < 0)
+	if (game->loot == game->looted)
+	{
+		control = mlx_image_to_window(game->mlx, game->textures->exit,
+				game->epos_x * PX, game->epos_x * PX);
+		if (control < 0)
 			annihilate("Failed to redraw exit.", game, 1);
-    }
-    
+	}
 }
-
 
 void	game_status(t_game *game)
 {
@@ -103,5 +102,3 @@ void	game_status(t_game *game)
 			ft_printf("\033[33mStill some food to eat.\n\033[0m");
 	}
 }
-
-

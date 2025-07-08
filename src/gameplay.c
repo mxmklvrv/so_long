@@ -6,11 +6,11 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:23:01 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/07 19:29:32 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 16:07:16 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 void	move_hook(mlx_key_data_t keydata, void *param)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loading_img.c                                      :+:      :+:    :+:   */
+/*   uploading_img.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 15:52:15 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/07 16:21:47 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 16:07:45 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 void	load_exit(t_textures *textures, t_game *game)
 {

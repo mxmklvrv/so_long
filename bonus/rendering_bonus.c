@@ -6,11 +6,11 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:26:50 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 01:53:52 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 16:05:30 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "../include/so_long_bonus.h"
 
 void	redraw_player(t_game *game, int decider)
 {
@@ -58,7 +58,6 @@ void	redraw_player_left(t_game *game, int decider)
 	}
 }
 
-
 void	load_map(t_game *game)
 {
 	int	x;
@@ -92,14 +91,14 @@ void	load_rest(t_game *game, int x, int y)
 		control = mlx_image_to_window(game->mlx, game->textures->player, x * PX,
 				y * PX);
 	else if (game->map[y][x] == 'D')
-		control = mlx_image_to_window(game->mlx, game->textures->demon, x * PX, y
-				* PX);
+		control = mlx_image_to_window(game->mlx, game->textures->demon, x * PX,
+				y * PX);
 	else if (game->map[y][x] == '1')
 		control = mlx_image_to_window(game->mlx, game->textures->wall, x * PX, y
 				* PX);
 	else if (game->map[y][x] == 'E')
-		control = mlx_image_to_window(game->mlx, game->textures->exit_closed, x * PX, y
-				* PX);
+		control = mlx_image_to_window(game->mlx, game->textures->exit_closed, x
+				* PX, y * PX);
 	else if (game->map[y][x] == 'C')
 		control = mlx_image_to_window(game->mlx, game->textures->collect, x * PX
 				+ PX / 6, y * PX + PX / 6);

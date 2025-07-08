@@ -6,11 +6,11 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 17:32:58 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 01:53:40 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 16:05:19 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "../include/so_long_bonus.h"
 
 char	*process_map(char *input)
 {
@@ -88,13 +88,13 @@ void	check_valid_input(char *contents)
 	int	player;
 	int	exit;
 	int	collectible;
-    int demon;
+	int	demon;
 	int	i;
 
 	player = 0;
 	exit = 0;
 	collectible = 0;
-    demon = 0;
+	demon = 0;
 	i = 0;
 	while (contents[i])
 	{
@@ -104,10 +104,10 @@ void	check_valid_input(char *contents)
 			exit++;
 		else if (contents[i] == 'C')
 			collectible++;
-        else if (contents[i] == 'D')
-            demon++;
+		else if (contents[i] == 'D')
+			demon++;
 		i++;
 	}
-	if (player != 1 || exit != 1 ||  demon < 0 || collectible == 0)
+	if (player != 1 || exit != 1 || demon < 0 || collectible == 0)
 		error_on_validation("PECD validation failed.", contents);
 }

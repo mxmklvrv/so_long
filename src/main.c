@@ -6,11 +6,11 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/07 19:26:29 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 16:07:22 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 int	main(int ac, char **av)
 {

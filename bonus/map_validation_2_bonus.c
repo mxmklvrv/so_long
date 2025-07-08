@@ -6,11 +6,11 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 18:59:52 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 01:53:36 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 16:05:10 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "../include/so_long_bonus.h"
 
 void	check_minimum_rows(char *contents)
 {

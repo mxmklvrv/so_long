@@ -6,11 +6,11 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:26:50 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/07 19:27:03 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 16:07:39 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 void	redraw_player(t_game *game, int decider)
 {

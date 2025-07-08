@@ -6,11 +6,11 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 15:52:15 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 01:54:01 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 16:06:00 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "../include/so_long_bonus.h"
 
 void	load_exit(t_textures *textures, t_game *game)
 {
