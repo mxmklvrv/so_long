@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:23:01 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 21:27:14 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/09 00:52:14 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,27 @@ void	action(t_game *game, char dir)
 		game->ppos_x += 1;
 		game->dir = 'r';
 		redraw_player(game, 0);
+        //redraw_player(game, 0);
+        
 	}
 	else if ((dir == 'l') && (game->map[game->ppos_y][game->ppos_x - 1] != '1'))
 	{
 		game->ppos_x -= 1;
 		game->dir = 'l';
-		redraw_player_left(game, 0);
+		//redraw_player_left(game, 0);
+        redraw_player(game, 0);
 	}
 	else if ((dir == 'u') && (game->map[game->ppos_y - 1][game->ppos_x] != '1'))
 	{
 		game->ppos_y -= 1;
-		check_face_dir_zero(game);
+		//check_face_dir_zero(game);
+        check_face_side(game);
 	}
 	else if ((dir == 'd') && (game->map[game->ppos_y + 1][game->ppos_x] != '1'))
 	{
 		game->ppos_y += 1;
-		check_face_dir_zero(game);
+		//check_face_dir_zero(game);
+        check_face_side(game);
 	}
 	bonus_status(game);
 	game_status(game);
@@ -88,7 +93,8 @@ void	game_status(t_game *game)
 				game->ppos_x * PX, game->ppos_y * PX);
 		if (control < 0)
 			annihilate("Failed to redraw floor.", game, 1);
-		check_face_dir_coll(game);
+		//check_face_dir_coll(game);
+        check_face_side(game);
 		ft_printf("\033[1;33mFood eaten\n\033[0m");
 		game->looted++;
 		game->map[game->ppos_y][game->ppos_x] = '0';
@@ -104,7 +110,14 @@ void	game_status(t_game *game)
 			ft_printf("\033[33mStill some food to eat.\n\033[0m");
 	}
 }
-
+void check_face_side(t_game *game)
+{
+    if (game->map[game->ppos_y][game->ppos_x] != 'C')
+        redraw_player(game, 0);
+    else
+        redraw_player(game, 1);
+}
+/*
 void	check_face_dir_coll(t_game *game)
 {
 	if (game->dir == 'l')
@@ -120,3 +133,5 @@ void	check_face_dir_zero(t_game *game)
 	else
 		redraw_player(game, 0);
 }
+*/
+

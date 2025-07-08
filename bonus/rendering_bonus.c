@@ -6,12 +6,12 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:26:50 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 21:53:04 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/09 00:49:17 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long_bonus.h"
-
+/*
 void	redraw_player(t_game *game, int decider)
 {
 	int	control;
@@ -62,6 +62,42 @@ void	redraw_player_left(t_game *game, int decider)
 		steps_to_screen(game);
 	}
 }
+*/
+void redraw_player(t_game *game, int decider)
+{
+    int control;
+    mlx_image_t *image;
+
+    control = 0;
+    if (game->textures->player_left)
+		mlx_delete_image(game->mlx, game->textures->player_left);
+	if (game->textures->player)
+		mlx_delete_image(game->mlx, game->textures->player);
+    if (game->dir == 'l')
+        image = mlx_texture_to_image(game->mlx, game->textures->player_t_l);
+    else
+        image = mlx_texture_to_image(game->mlx, game->textures->player_t);
+    if (image == NULL)
+        annihilate("Failed to redraw player.", game, 1);
+    mlx_resize_image(image, PX, PX);
+    if (game->dir == 'l')
+        game->textures->player_left = image;
+    else
+        game->textures->player = image;
+    control = mlx_image_to_window(game->mlx, image , game->ppos_x * PX, game->ppos_y * PX);
+    if(control < 0)
+        annihilate("Failed to redraw player.", game, 1);
+    handle_step(game, decider);
+}
+void handle_step(t_game *game, int decider)
+{
+    if (decider == 0)
+	{
+		game->steps++;
+		steps_to_screen(game);
+	}
+}
+
 
 void	load_map(t_game *game)
 {

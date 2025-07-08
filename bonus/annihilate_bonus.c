@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:32:41 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 22:00:32 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 23:14:16 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,28 @@ void	free_textures(t_game *game)
 		mlx_delete_image(game->mlx, game->textures->collect);
 	if (game->textures->player_t)
 		mlx_delete_texture(game->textures->player_t);
-	if (game->textures->player_left)
+    free_bonus_textures(game);
+	free(game->textures);
+}
+
+void free_bonus_textures(t_game *game)
+{
+    if (game->textures->player_left)
 		mlx_delete_image(game->mlx, game->textures->player_left);
+    if (game->textures->player_t_l)
+		mlx_delete_texture(game->textures->player_t_l);
 	if (game->textures->exit_closed)
 		mlx_delete_image(game->mlx, game->textures->exit_closed);
 	if (game->textures->flower)
 		mlx_delete_image(game->mlx, game->textures->flower);
-	if (game->textures->player_t_l)
-		mlx_delete_texture(game->textures->player_t_l);
 	if (game->textures->steps_on_screen)
 		mlx_delete_image(game->mlx, game->textures->steps_on_screen);
-	free(game->textures);
+    if (game->textures->player_ate)
+        mlx_delete_image(game->mlx, game->textures->player_ate);
+    if (game->textures->player_ta)
+		mlx_delete_texture(game->textures->player_ta);
+    if (game->textures->player_ate_left)
+        mlx_delete_image(game->mlx, game->textures->player_ate_left);
+    if (game->textures->player_ta_l)
+		mlx_delete_texture(game->textures->player_ta_l)
 }
