@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 11:36:45 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/08 13:37:08 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,5 +165,11 @@ void    steps_to_screen(t_game *game)
     count = ft_itoa(game->steps);
     if(count == NULL)
         annihilate("Steps to screen failed.", game, 1);
-    
+    str = ft_strjoin("MOVES: ", count);
+    if (str == NULL)
+        annihilate("Steps to screen failed.", game, 1);
+    if (game->textures->steps_on_screen)
+        mlx_delete_image(game->mlx, game->textures->steps_on_screen);
+    game->textures->steps_on_screen = mlx_put_string(game->mlx, str, слвеа, справа);
+    free(str);
 }
