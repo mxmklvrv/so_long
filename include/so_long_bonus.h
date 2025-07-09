@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/09 00:50:00 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/09 12:53:05 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,26 +107,21 @@ int					count_loot(t_game *data);
 // gameplay
 void				move_hook(mlx_key_data_t keydata, void *param);
 void				action(t_game *game, char dir);
-//void				redraw_player(t_game *game, int decider);
 void				game_status(t_game *game);
 
 // bonus
-//void				redraw_player_left(t_game *game, int decider);
 void				load_bonus(t_textures *textures, t_game *game);
 void				load_player_left(t_textures *textures, t_game *game);
 void				load_flower(t_textures *textures, t_game *game);
 void				load_exit_closed(t_textures *textures, t_game *game);
 void				bonus_status(t_game *game);
 void				steps_to_screen(t_game *game);
-//void				check_face_dir_coll(t_game *game);
-//void				check_face_dir_zero(t_game *game);
 void				load_player_ate(t_textures *textures, t_game *game);
 void				load_player_ate_left(t_textures *textures, t_game *game);
-void free_bonus_textures(t_game *game);
-//TEST BOLOW
-void check_face_side(t_game *game);
-void redraw_player(t_game *game, int decider);
-void handle_step(t_game *game, int decider)
+void				free_bonus_textures(t_game *game);
+void				check_face_side(t_game *game);
+void				redraw_player(t_game *game, int decider);
+void				handle_step(t_game *game, int decider);
 
 // error free exit
 void				error_message(char *message);

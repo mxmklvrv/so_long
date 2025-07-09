@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:23:01 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/09 10:27:17 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/09 13:19:30 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,22 @@ void	action(t_game *game, char dir)
 		game->ppos_x += 1;
 		game->dir = 'r';
 		redraw_player(game, 0);
-        //redraw_player(game, 0);
-        
 	}
 	else if ((dir == 'l') && (game->map[game->ppos_y][game->ppos_x - 1] != '1'))
 	{
 		game->ppos_x -= 1;
 		game->dir = 'l';
-		//redraw_player_left(game, 0);
-        redraw_player(game, 0);
+		redraw_player(game, 0);
 	}
 	else if ((dir == 'u') && (game->map[game->ppos_y - 1][game->ppos_x] != '1'))
 	{
 		game->ppos_y -= 1;
-		//check_face_dir_zero(game);
-        check_face_side(game);
+		check_face_side(game);
 	}
 	else if ((dir == 'd') && (game->map[game->ppos_y + 1][game->ppos_x] != '1'))
 	{
 		game->ppos_y += 1;
-		//check_face_dir_zero(game);
-        check_face_side(game);
+		check_face_side(game);
 	}
 	bonus_status(game);
 	game_status(game);
@@ -72,7 +67,7 @@ void	bonus_status(t_game *game)
 		ft_printf("You ate poisoned flower, gg ez))");
 		annihilate("\n", game, 0);
 	}
-    if (game->map[game->ppos_y][game->ppos_x] == 'E')
+	if (game->map[game->ppos_y][game->ppos_x] == 'E')
 	{
 		if (game->loot == game->looted)
 		{
@@ -95,13 +90,12 @@ void	game_status(t_game *game)
 				game->ppos_x * PX, game->ppos_y * PX);
 		if (control < 0)
 			annihilate("Failed to redraw floor.", game, 1);
-		//check_face_dir_coll(game);
-        check_face_side(game);
+		check_face_side(game);
 		ft_printf("\033[1;33mFood eaten\n\033[0m");
 		game->looted++;
 		game->map[game->ppos_y][game->ppos_x] = '0';
 	}
-    if (game->loot == game->looted)
+	if (game->loot == game->looted)
 	{
 		mlx_delete_image(game->mlx, game->textures->exit_closed);
 		control = mlx_image_to_window(game->mlx, game->textures->exit,
@@ -109,54 +103,31 @@ void	game_status(t_game *game)
 		if (control < 0)
 			annihilate("Failed to redraw exit.", game, 1);
 	}
-
 }
-void check_face_side(t_game *game)
+void	check_face_side(t_game *game)
 {
-    mlx_texture_t *before_food;
-    mlx_texture_t *before_food_left;
-    
-    if (game->map[game->ppos_y][game->ppos_x] == 'C')
-    {
-        before_food = game->textures->player_t;
-        before_food_left = game->textures->player_t_l;
-        game->textures->player_t = game->textures->player_ta;
-        game->textures->player_t_l = game->textures->player_ta_l;
-        redraw_player(game, 1);
-        game->textures->player_t = before_food;
-        game->textures->player_t_l = before_food_left;
-    }
-    else
-        redraw_player(game, 0);
-}
-/*
-void check_face_side(t_game *game)
-{
-    if (game->map[game->ppos_y][game->ppos_x] != 'C')
-        redraw_player(game, 1);
-    else
-        redraw_player(game, 0);
-}
-*/
+	mlx_texture_t	*before_food;
+	mlx_texture_t	*before_food_left;
 
-
-
-
-/*
-void	check_face_dir_coll(t_game *game)
-{
-	if (game->dir == 'l')
-		redraw_player_left(game, 1);
-	else
+	if (game->map[game->ppos_y][game->ppos_x] == 'C')
+	{
+		before_food = game->textures->player_t;
+		before_food_left = game->textures->player_t_l;
+		game->textures->player_t = game->textures->player_ta;
+		game->textures->player_t_l = game->textures->player_ta_l;
 		redraw_player(game, 1);
+		game->textures->player_t = before_food;
+		game->textures->player_t_l = before_food_left;
+	}
+	else
+		redraw_player(game, 0);
 }
-
-void	check_face_dir_zero(t_game *game)
+/*
+void	check_face_side(t_game *game)
 {
-	if (game->dir == 'l')
-		redraw_player_left(game, 0);
+	if (game->map[game->ppos_y][game->ppos_x] != 'C')
+		redraw_player(game, 1);
 	else
 		redraw_player(game, 0);
 }
 */
-
