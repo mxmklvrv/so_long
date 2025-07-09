@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:32:41 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/09 12:46:59 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/09 18:31:54 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,16 @@ void	free_bonus_textures(t_game *game)
 		mlx_delete_image(game->mlx, game->textures->player_ate_left);
 	if (game->textures->player_ta_l)
 		mlx_delete_texture(game->textures->player_ta_l);
+	if (game->textures->player_dead)
+		mlx_delete_image(game->mlx, game->textures->player_dead);
+	if (game->textures->player_td)
+		mlx_delete_texture(game->textures->player_td);
+	if (game->textures->player_dead_2)
+		mlx_delete_image(game->mlx, game->textures->player_dead_2);
+	if (game->textures->player_td_2)
+		mlx_delete_texture(game->textures->player_td_2);
+	if (game->textures->player_dead_0)
+		mlx_delete_image(game->mlx, game->textures->player_dead_0);
+	if (game->textures->player_td_0)
+		mlx_delete_texture(game->textures->player_td_0);
 }

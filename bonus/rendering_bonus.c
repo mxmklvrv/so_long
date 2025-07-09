@@ -6,22 +6,19 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:26:50 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/09 13:21:00 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/09 19:21:15 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long_bonus.h"
 
-void	redraw_player(t_game *game, int decider)
+void	redraw_player(t_game *game)
 {
 	int			control;
 	mlx_image_t	*image;
 
 	control = 0;
-	if (game->textures->player_left)
-		mlx_delete_image(game->mlx, game->textures->player_left);
-	if (game->textures->player)
-		mlx_delete_image(game->mlx, game->textures->player);
+	delete_img(game);
 	if (game->dir == 'l')
 		image = mlx_texture_to_image(game->mlx, game->textures->player_t_l);
 	else
@@ -37,20 +34,14 @@ void	redraw_player(t_game *game, int decider)
 			game->ppos_y * PX);
 	if (control < 0)
 		annihilate("Failed to redraw player.", game, 1);
-	handle_step(game, decider);
 }
-void	handle_step(t_game *game, int decider)
+
+void	handle_step(t_game *game)
 {
-	if (decider == 0)
-	{
-		game->steps++;
-		steps_to_screen(game);
-	}
-	// if (game->map[game->ppos_y][game->ppos_x] == 'C' && decider == 1)
-	// {
-	// 	game->steps++;
-	// 	steps_to_screen(game);
-	// }
+	game->steps++;
+	if (game->steps < 0)
+		annihilate("https://www.youtube.com/watch?v=GBIIQ0kP15E", game, 1);
+	steps_to_screen(game);
 }
 
 void	load_map(t_game *game)
@@ -99,4 +90,40 @@ void	load_rest(t_game *game, int x, int y)
 				+ PX / 6, y * PX + PX / 6);
 	if (control < 0)
 		annihilate("Loading failed.", game, 1);
+}
+void	death(t_game *game)
+{
+	int				i;
+	int				control;
+	mlx_image_t		*image;
+	mlx_texture_t	*frame[3];
+
+	i = 0;
+	control = 0;
+	frame[0] = game->textures->player_td_0;
+	frame[1] = game->textures->player_td;
+	frame[2] = game->textures->player_td_2;
+	delete_img(game);
+	while (i < 3)
+	{
+		image = mlx_texture_to_image(game->mlx, frame[i]);
+		if (image == NULL)
+			annihilate("Failed to load death.", game, 1);
+		mlx_resize_image(image, PX, PX);
+		control = mlx_image_to_window(game->mlx, image, game->ppos_x * PX,
+				game->ppos_y * PX);
+		ft_printf("I'm here\n");
+		if (control < 0)
+			annihilate("Failed to load death.", game, 1);
+		mlx_delete_image(game->mlx, image);
+		ft_printf("I left\n");
+		i++;
+	}
+}
+void	delete_img(t_game *game)
+{
+	if (game->textures->player_left)
+		mlx_delete_image(game->mlx, game->textures->player_left);
+	if (game->textures->player)
+		mlx_delete_image(game->mlx, game->textures->player);
 }

@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:26:50 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 16:07:39 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/09 15:48:08 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	redraw_player(t_game *game, int decider)
 	if (decider == 0)
 	{
 		game->steps++;
+		if (game->steps < 0)
+			annihilate("https://www.youtube.com/watch?v=GBIIQ0kP15E", game, 1);
 		ft_printf("Number of steps: %d\n", game->steps);
 	}
 }

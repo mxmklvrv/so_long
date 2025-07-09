@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 23:12:16 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/09 18:23:59 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int ac, char **av)
 
 	check_command_line(ac, av);
 	game = get_basic_data(av[1]);
-    game->mlx = mlx_init(game->map_width * PX, (game->map_height + 1) * PX,
+	game->mlx = mlx_init(game->map_width * PX, (game->map_height + 1) * PX,
 			"so_long", true);
 	if (!game->mlx)
 		annihilate("Window creation failed.", game, 1);
@@ -106,6 +106,15 @@ void	load_bonus(t_textures *textures, t_game *game)
 	textures->player_ate_left = NULL;
 	textures->player_ta = NULL;
 	textures->player_ta_l = NULL;
+	textures->player_dead_0 = NULL;
+	textures->player_td_0 = NULL;
+	textures->player_dead = NULL;
+	textures->player_dead_2 = NULL;
+	textures->player_td = NULL;
+	textures->player_td_2 = NULL;
+	load_player_dying_0(textures, game);
+	load_player_dying(textures, game);
+	load_player_dying_2(textures, game);
 	load_player_left(textures, game);
 	load_flower(textures, game);
 	load_exit_closed(textures, game);

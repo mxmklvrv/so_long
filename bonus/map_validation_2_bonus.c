@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 18:59:52 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 19:45:53 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/09 15:30:15 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	check_minimum_rows(char *contents)
 	}
 	if (count_nl < 2)
 		error_on_validation("Not enough rows for map.", contents);
-	if (count_nl > 32)
+	if (count_nl > 31)
 		error_on_validation("Map is too tall.", contents);
 }
 

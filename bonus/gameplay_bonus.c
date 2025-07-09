@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:23:01 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/09 13:19:30 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/09 19:18:25 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,15 @@ void	move_hook(mlx_key_data_t keydata, void *param)
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		mlx_close_window(game->mlx);
 	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
+	{
+		game->dir = 'r';
 		action(game, 'r');
+	}
 	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
+	{
+		game->dir = 'l';
 		action(game, 'l');
+	}
 	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
 		action(game, 'u');
 	if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
@@ -34,27 +40,28 @@ void	action(t_game *game, char dir)
 	if ((dir == 'r') && (game->map[game->ppos_y][game->ppos_x + 1] != '1'))
 	{
 		game->ppos_x += 1;
-		game->dir = 'r';
-		redraw_player(game, 0);
+		redraw_player(game);
+		handle_step(game);
 	}
 	else if ((dir == 'l') && (game->map[game->ppos_y][game->ppos_x - 1] != '1'))
 	{
 		game->ppos_x -= 1;
-		game->dir = 'l';
-		redraw_player(game, 0);
+		redraw_player(game);
+		handle_step(game);
 	}
 	else if ((dir == 'u') && (game->map[game->ppos_y - 1][game->ppos_x] != '1'))
 	{
 		game->ppos_y -= 1;
 		check_face_side(game);
+		handle_step(game);
 	}
 	else if ((dir == 'd') && (game->map[game->ppos_y + 1][game->ppos_x] != '1'))
 	{
 		game->ppos_y += 1;
 		check_face_side(game);
+		handle_step(game);
 	}
 	bonus_status(game);
-	game_status(game);
 }
 
 void	bonus_status(t_game *game)
@@ -64,6 +71,7 @@ void	bonus_status(t_game *game)
 	control = 0;
 	if (game->map[game->ppos_y][game->ppos_x] == 'D')
 	{
+		death(game);
 		ft_printf("You ate poisoned flower, gg ez))");
 		annihilate("\n", game, 0);
 	}
@@ -77,6 +85,7 @@ void	bonus_status(t_game *game)
 		else
 			ft_printf("\033[33mStill some food to eat.\n\033[0m");
 	}
+	game_status(game);
 }
 
 void	game_status(t_game *game)
@@ -115,19 +124,10 @@ void	check_face_side(t_game *game)
 		before_food_left = game->textures->player_t_l;
 		game->textures->player_t = game->textures->player_ta;
 		game->textures->player_t_l = game->textures->player_ta_l;
-		redraw_player(game, 1);
+		redraw_player(game);
 		game->textures->player_t = before_food;
 		game->textures->player_t_l = before_food_left;
 	}
 	else
-		redraw_player(game, 0);
+		redraw_player(game);
 }
-/*
-void	check_face_side(t_game *game)
-{
-	if (game->map[game->ppos_y][game->ppos_x] != 'C')
-		redraw_player(game, 1);
-	else
-		redraw_player(game, 0);
-}
-*/

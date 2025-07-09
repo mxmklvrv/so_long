@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/09 12:53:05 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/09 18:49:28 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,17 @@ typedef struct s_textures
 	mlx_image_t		*steps_on_screen;
 	mlx_image_t		*player_ate;
 	mlx_image_t		*player_ate_left;
+	mlx_image_t		*player_dead_0;
+	mlx_image_t		*player_dead;
+	mlx_image_t		*player_dead_2;
 
 	mlx_texture_t	*player_t;
 	mlx_texture_t	*player_t_l;
 	mlx_texture_t	*player_ta;
 	mlx_texture_t	*player_ta_l;
+	mlx_texture_t	*player_td_0;
+	mlx_texture_t	*player_td;
+	mlx_texture_t	*player_td_2;
 
 }					t_textures;
 
@@ -120,8 +126,13 @@ void				load_player_ate(t_textures *textures, t_game *game);
 void				load_player_ate_left(t_textures *textures, t_game *game);
 void				free_bonus_textures(t_game *game);
 void				check_face_side(t_game *game);
-void				redraw_player(t_game *game, int decider);
-void				handle_step(t_game *game, int decider);
+void				redraw_player(t_game *game);
+void				handle_step(t_game *game);
+void				load_player_dying_0(t_textures *textures, t_game *game);
+void				load_player_dying(t_textures *textures, t_game *game);
+void				load_player_dying_2(t_textures *textures, t_game *game);
+void				death(t_game *game);
+void				delete_img(t_game *game);
 
 // error free exit
 void				error_message(char *message);
