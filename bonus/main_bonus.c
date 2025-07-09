@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/09 18:23:59 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/09 19:58:44 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int ac, char **av)
 	load_map(game);
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	mlx_key_hook(game->mlx, move_hook, game);
+	mlx_loop_hook(game->mlx, death, game);
 	mlx_loop(game->mlx);
 	early_termination(game);
 	return (0);

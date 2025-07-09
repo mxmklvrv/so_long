@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:26:50 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/09 19:21:15 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/09 20:13:18 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,20 +91,22 @@ void	load_rest(t_game *game, int x, int y)
 	if (control < 0)
 		annihilate("Loading failed.", game, 1);
 }
-void	death(t_game *game)
+void	death(void *tmp)
 {
 	int				i;
 	int				control;
+	t_game 			*game;
 	mlx_image_t		*image;
 	mlx_texture_t	*frame[3];
 
 	i = 0;
 	control = 0;
+	game = tmp;
 	frame[0] = game->textures->player_td_0;
 	frame[1] = game->textures->player_td;
 	frame[2] = game->textures->player_td_2;
 	delete_img(game);
-	while (i < 3)
+	if (i < 3)
 	{
 		image = mlx_texture_to_image(game->mlx, frame[i]);
 		if (image == NULL)
@@ -112,11 +114,9 @@ void	death(t_game *game)
 		mlx_resize_image(image, PX, PX);
 		control = mlx_image_to_window(game->mlx, image, game->ppos_x * PX,
 				game->ppos_y * PX);
-		ft_printf("I'm here\n");
 		if (control < 0)
 			annihilate("Failed to load death.", game, 1);
 		mlx_delete_image(game->mlx, image);
-		ft_printf("I left\n");
 		i++;
 	}
 }
