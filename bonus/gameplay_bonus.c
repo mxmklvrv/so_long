@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:23:01 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/09 09:44:08 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/09 10:27:17 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,15 @@ void	bonus_status(t_game *game)
 		ft_printf("You ate poisoned flower, gg ez))");
 		annihilate("\n", game, 0);
 	}
-	if (game->loot == game->looted)
+    if (game->map[game->ppos_y][game->ppos_x] == 'E')
 	{
-		mlx_delete_image(game->mlx, game->textures->exit_closed);
-		control = mlx_image_to_window(game->mlx, game->textures->exit,
-				game->epos_x * PX, game->epos_y * PX);
-		if (control < 0)
-			annihilate("Failed to redraw exit.", game, 1);
+		if (game->loot == game->looted)
+		{
+			ft_printf("\033[32mAll eaten in %d steps!\033[0m", game->steps);
+			annihilate("\n", game, 0);
+		}
+		else
+			ft_printf("\033[33mStill some food to eat.\n\033[0m");
 	}
 }
 
@@ -99,16 +101,15 @@ void	game_status(t_game *game)
 		game->looted++;
 		game->map[game->ppos_y][game->ppos_x] = '0';
 	}
-	if (game->map[game->ppos_y][game->ppos_x] == 'E')
+    if (game->loot == game->looted)
 	{
-		if (game->loot == game->looted)
-		{
-			ft_printf("\033[32mAll eaten in %d steps!\033[0m", game->steps);
-			annihilate("\n", game, 0);
-		}
-		else
-			ft_printf("\033[33mStill some food to eat.\n\033[0m");
+		mlx_delete_image(game->mlx, game->textures->exit_closed);
+		control = mlx_image_to_window(game->mlx, game->textures->exit,
+				game->epos_x * PX, game->epos_y * PX);
+		if (control < 0)
+			annihilate("Failed to redraw exit.", game, 1);
 	}
+
 }
 void check_face_side(t_game *game)
 {
