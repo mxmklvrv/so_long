@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:23:01 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/09 00:52:14 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/09 09:44:08 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,11 +112,35 @@ void	game_status(t_game *game)
 }
 void check_face_side(t_game *game)
 {
-    if (game->map[game->ppos_y][game->ppos_x] != 'C')
-        redraw_player(game, 0);
-    else
+    mlx_texture_t *before_food;
+    mlx_texture_t *before_food_left;
+    
+    if (game->map[game->ppos_y][game->ppos_x] == 'C')
+    {
+        before_food = game->textures->player_t;
+        before_food_left = game->textures->player_t_l;
+        game->textures->player_t = game->textures->player_ta;
+        game->textures->player_t_l = game->textures->player_ta_l;
         redraw_player(game, 1);
+        game->textures->player_t = before_food;
+        game->textures->player_t_l = before_food_left;
+    }
+    else
+        redraw_player(game, 0);
 }
+/*
+void check_face_side(t_game *game)
+{
+    if (game->map[game->ppos_y][game->ppos_x] != 'C')
+        redraw_player(game, 1);
+    else
+        redraw_player(game, 0);
+}
+*/
+
+
+
+
 /*
 void	check_face_dir_coll(t_game *game)
 {
