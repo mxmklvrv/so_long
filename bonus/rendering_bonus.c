@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:26:50 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/09 20:13:18 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/10 12:30:35 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,35 +91,8 @@ void	load_rest(t_game *game, int x, int y)
 	if (control < 0)
 		annihilate("Loading failed.", game, 1);
 }
-void	death(void *tmp)
-{
-	int				i;
-	int				control;
-	t_game 			*game;
-	mlx_image_t		*image;
-	mlx_texture_t	*frame[3];
 
-	i = 0;
-	control = 0;
-	game = tmp;
-	frame[0] = game->textures->player_td_0;
-	frame[1] = game->textures->player_td;
-	frame[2] = game->textures->player_td_2;
-	delete_img(game);
-	if (i < 3)
-	{
-		image = mlx_texture_to_image(game->mlx, frame[i]);
-		if (image == NULL)
-			annihilate("Failed to load death.", game, 1);
-		mlx_resize_image(image, PX, PX);
-		control = mlx_image_to_window(game->mlx, image, game->ppos_x * PX,
-				game->ppos_y * PX);
-		if (control < 0)
-			annihilate("Failed to load death.", game, 1);
-		mlx_delete_image(game->mlx, image);
-		i++;
-	}
-}
+
 void	delete_img(t_game *game)
 {
 	if (game->textures->player_left)
@@ -127,3 +100,44 @@ void	delete_img(t_game *game)
 	if (game->textures->player)
 		mlx_delete_image(game->mlx, game->textures->player);
 }
+/*Решить проблему с задержкой анимации*/
+// меньше строк в death
+// хз работает ли death 
+// можем ли двигаться во время анимации смерти ? 
+// надо ли удалять цветок в целом или нет 
+// удалить epos x epos y в базовой игре 
+void	death(void *tmp)
+{
+	int				control;
+	t_game 			*game;
+	mlx_image_t		*image;
+	mlx_texture_t	*frame[3];
+
+    if(game->dying == false)
+        return ;
+	control = 0;
+	game = tmp;
+	frame[0] = game->textures->player_td_0;
+	frame[1] = game->textures->player_td;
+	frame[2] = game->textures->player_td_2;
+	delete_img(game);
+	image = mlx_texture_to_image(game->mlx, frame[game->death_frame]);
+	if (image == NULL)
+		annihilate("Failed to load death.", game, 1);
+	mlx_resize_image(image, PX, PX);
+	control = mlx_image_to_window(game->mlx, image, game->ppos_x * PX,
+			game->ppos_y * PX);
+	if (control < 0)
+		annihilate("Failed to load death.", game, 1);
+    game->death_frame++;
+    if(game->dir = 'l')
+        game->textures->player_left = image;
+    else
+        game->textures->player = image;
+    if(game->death_frame >= 3)
+    {
+        game->dying = false;
+        annihilate("You ate poisoned flower, gg ez))", game, 0);
+    }
+}
+

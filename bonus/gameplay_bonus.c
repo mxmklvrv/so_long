@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:23:01 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/09 19:18:25 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/10 12:23:13 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	move_hook(mlx_key_data_t keydata, void *param)
 	t_game	*game;
 
 	game = param;
+    if (game->dying == true)
+        return;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		mlx_close_window(game->mlx);
 	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
@@ -71,9 +73,9 @@ void	bonus_status(t_game *game)
 	control = 0;
 	if (game->map[game->ppos_y][game->ppos_x] == 'D')
 	{
-		death(game);
-		ft_printf("You ate poisoned flower, gg ez))");
-		annihilate("\n", game, 0);
+        game->dying = true;
+        game->death_frame = 0;
+		
 	}
 	if (game->map[game->ppos_y][game->ppos_x] == 'E')
 	{
