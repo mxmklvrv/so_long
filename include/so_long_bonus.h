@@ -66,6 +66,11 @@ typedef struct s_game
 	int				steps;
 	char			dir;
 
+
+	bool			dying;
+	int				death_frame;
+	int				loop_count; 
+
 }					t_game;
 
 // main

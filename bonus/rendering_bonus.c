@@ -113,10 +113,13 @@ void	death(void *tmp)
 	mlx_image_t		*image;
 	mlx_texture_t	*frame[3];
 
-    if(game->dying == false)
-        return ;
 	control = 0;
 	game = tmp;
+    if(game->dying == false)
+        return ;
+	if (++game->loop_count < 6000) // for now to test 
+		return; 
+	game->loop_count = 0;
 	frame[0] = game->textures->player_td_0;
 	frame[1] = game->textures->player_td;
 	frame[2] = game->textures->player_td_2;
@@ -130,7 +133,7 @@ void	death(void *tmp)
 	if (control < 0)
 		annihilate("Failed to load death.", game, 1);
     game->death_frame++;
-    if(game->dir = 'l')
+    if(game->dir == 'l')
         game->textures->player_left = image;
     else
         game->textures->player = image;

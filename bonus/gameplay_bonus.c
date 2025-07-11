@@ -75,6 +75,7 @@ void	bonus_status(t_game *game)
 	{
         game->dying = true;
         game->death_frame = 0;
+		game->loop_count = 0;
 		
 	}
 	if (game->map[game->ppos_y][game->ppos_x] == 'E')
