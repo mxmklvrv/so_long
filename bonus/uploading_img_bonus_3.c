@@ -31,6 +31,24 @@ void	load_player_ate_left(t_textures *textures, t_game *game)
 	mlx_resize_image(textures->player_ate_left, PX, PX);
 }
 
+void	load_player_dying_0(t_textures *textures, t_game *game)
+{
+	mlx_texture_t *player_dead_0;
+
+	player_dead_0 = mlx_load_png("./img/smert0.png");
+	if (player_dead_0 == NULL)
+		annihilate("Loading player ate failed.", game, 1);
+	textures->player_td_0 = player_dead_0;
+	textures->player_dead_0 = mlx_texture_to_image(game->mlx, player_dead_0);
+	if (textures->player_dead_0 == NULL)
+	{
+		mlx_delete_texture(player_dead_0);
+		annihilate("Loading texture to img player ate left side failed.", game,
+			1);
+	}
+	mlx_resize_image(textures->player_dead_0, PX, PX);
+}
+
 void	load_player_dying(t_textures *textures, t_game *game)
 {
 	mlx_texture_t	*player_dead;
@@ -67,20 +85,3 @@ void	load_player_dying_2(t_textures *textures, t_game *game)
 	mlx_resize_image(textures->player_dead_2, PX, PX);
 }
 
-void	load_player_dying_0(t_textures *textures, t_game *game)
-{
-	mlx_texture_t *player_dead_0;
-
-	player_dead_0 = mlx_load_png("./img/smert0.png");
-	if (player_dead_0 == NULL)
-		annihilate("Loading player ate failed.", game, 1);
-	textures->player_td_0 = player_dead_0;
-	textures->player_dead_0 = mlx_texture_to_image(game->mlx, player_dead_0);
-	if (textures->player_dead_0 == NULL)
-	{
-		mlx_delete_texture(player_dead_0);
-		annihilate("Loading texture to img player ate left side failed.", game,
-			1);
-	}
-	mlx_resize_image(textures->player_dead_0, PX, PX);
-}

@@ -100,26 +100,34 @@ void	delete_img(t_game *game)
 	if (game->textures->player)
 		mlx_delete_image(game->mlx, game->textures->player);
 }
-/*Решить проблему с задержкой анимации*/
-// меньше строк в death
-// хз работает ли death 
 // можем ли двигаться во время анимации смерти ? 
-// надо ли удалять цветок в целом или нет 
-// удалить epos x epos y в базовой игре 
+// функция смерти разделена на 2 части 
 void	death(void *tmp)
 {
-	int				control;
 	t_game 			*game;
-	mlx_image_t		*image;
-	mlx_texture_t	*frame[3];
-
+	
 	control = 0;
 	game = tmp;
     if(game->dying == false)
         return ;
-	if (++game->loop_count < 6000) // for now to test 
+	if (++game->loop_count < 30)
 		return; 
 	game->loop_count = 0;
+	load_death_frame(game);
+    game->death_frame++;
+    if(game->death_frame >= 3)
+    {
+        game->dying = false;
+        annihilate("You ate poisoned flower, gg ez))", game, 0);
+    }
+}
+
+void laod_death_frame(t_game *game)
+{
+	int				control;
+	mlx_image_t		*image;
+	mlx_texture_t	*frame[3];
+
 	frame[0] = game->textures->player_td_0;
 	frame[1] = game->textures->player_td;
 	frame[2] = game->textures->player_td_2;
@@ -132,15 +140,8 @@ void	death(void *tmp)
 			game->ppos_y * PX);
 	if (control < 0)
 		annihilate("Failed to load death.", game, 1);
-    game->death_frame++;
-    if(game->dir == 'l')
+	if(game->dir == 'l')
         game->textures->player_left = image;
     else
         game->textures->player = image;
-    if(game->death_frame >= 3)
-    {
-        game->dying = false;
-        annihilate("You ate poisoned flower, gg ez))", game, 0);
-    }
 }
-

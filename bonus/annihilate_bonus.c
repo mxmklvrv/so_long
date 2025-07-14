@@ -54,18 +54,18 @@ void	free_textures(t_game *game)
 		mlx_delete_image(game->mlx, game->textures->collect);
 	if (game->textures->player_t)
 		mlx_delete_texture(game->textures->player_t);
-	free_bonus_textures(game);
-	free(game->textures);
-}
-
-void	free_bonus_textures(t_game *game)
-{
 	if (game->textures->player_left)
 		mlx_delete_image(game->mlx, game->textures->player_left);
 	if (game->textures->player_t_l)
 		mlx_delete_texture(game->textures->player_t_l);
 	if (game->textures->exit_closed)
 		mlx_delete_image(game->mlx, game->textures->exit_closed);
+	free_bonus_textures(game);
+	free(game->textures);
+}
+
+void	free_bonus_textures(t_game *game)
+{
 	if (game->textures->flower)
 		mlx_delete_image(game->mlx, game->textures->flower);
 	if (game->textures->steps_on_screen)

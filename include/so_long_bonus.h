@@ -136,8 +136,11 @@ void				handle_step(t_game *game);
 void				load_player_dying_0(t_textures *textures, t_game *game);
 void				load_player_dying(t_textures *textures, t_game *game);
 void				load_player_dying_2(t_textures *textures, t_game *game);
-void				death(t_game *game);
+
+// death animation 
+void				death(void *tmp);
 void				delete_img(t_game *game);
+void laod_death_frame(t_game *game)
 
 // error free exit
 void				error_message(char *message);

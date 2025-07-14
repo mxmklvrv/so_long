@@ -43,8 +43,6 @@ typedef struct s_game
 	int				map_height;
 	int				ppos_x;
 	int				ppos_y;
-	int				epos_x;
-	int				epos_y;
 	int				loot;
 	int				looted;
 	int				steps;

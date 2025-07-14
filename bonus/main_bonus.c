@@ -66,6 +66,7 @@ t_game	*init_basic_data(char **map_splitted)
 	data->epos_x = get_pos(data, 'E', 'x');
 	data->epos_y = get_pos(data, 'E', 'y');
 	data->loot = count_loot(data);
+	data->dying = false; 
 	data->dir = 'r';
 	data->looted = 0;
 	data->steps = 0;

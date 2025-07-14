@@ -54,8 +54,6 @@ t_game	*init_basic_data(char **map_splitted)
 	data->map_height = get_height(map_splitted);
 	data->ppos_x = get_pos(data, 'P', 'x');
 	data->ppos_y = get_pos(data, 'P', 'y');
-	data->epos_x = get_pos(data, 'E', 'x');
-	data->epos_y = get_pos(data, 'E', 'y');
 	data->loot = count_loot(data);
 	data->looted = 0;
 	data->steps = 0;
