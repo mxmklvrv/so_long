@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 17:24:41 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/09 19:03:59 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/16 14:12:33 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	load_player_ate_left(t_textures *textures, t_game *game)
 
 void	load_player_dying_0(t_textures *textures, t_game *game)
 {
-	mlx_texture_t *player_dead_0;
+	mlx_texture_t	*player_dead_0;
 
 	player_dead_0 = mlx_load_png("./img/smert0.png");
 	if (player_dead_0 == NULL)
@@ -69,7 +69,7 @@ void	load_player_dying(t_textures *textures, t_game *game)
 
 void	load_player_dying_2(t_textures *textures, t_game *game)
 {
-	mlx_texture_t *player_dead_2;
+	mlx_texture_t	*player_dead_2;
 
 	player_dead_2 = mlx_load_png("./img/smert_2.png");
 	if (player_dead_2 == NULL)
@@ -84,4 +84,3 @@ void	load_player_dying_2(t_textures *textures, t_game *game)
 	}
 	mlx_resize_image(textures->player_dead_2, PX, PX);
 }
-

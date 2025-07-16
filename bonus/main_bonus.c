@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/09 19:58:44 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/16 14:12:10 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int ac, char **av)
 	early_termination(game);
 	return (0);
 }
+
 t_game	*get_basic_data(char *input)
 {
 	char	*map_in_line;
@@ -66,7 +67,7 @@ t_game	*init_basic_data(char **map_splitted)
 	data->epos_x = get_pos(data, 'E', 'x');
 	data->epos_y = get_pos(data, 'E', 'y');
 	data->loot = count_loot(data);
-	data->dying = false; 
+	data->dying = false;
 	data->dir = 'r';
 	data->looted = 0;
 	data->steps = 0;

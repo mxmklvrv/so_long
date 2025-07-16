@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:52:45 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/09 18:49:28 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/16 13:32:41 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,9 @@ typedef struct s_game
 	int				steps;
 	char			dir;
 
-
 	bool			dying;
 	int				death_frame;
-	int				loop_count; 
+	int				loop_count;
 
 }					t_game;
 
@@ -137,10 +136,10 @@ void				load_player_dying_0(t_textures *textures, t_game *game);
 void				load_player_dying(t_textures *textures, t_game *game);
 void				load_player_dying_2(t_textures *textures, t_game *game);
 
-// death animation 
+// death animation
 void				death(void *tmp);
 void				delete_img(t_game *game);
-void laod_death_frame(t_game *game)
+void				load_death_frame(t_game *game);
 
 // error free exit
 void				error_message(char *message);

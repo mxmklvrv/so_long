@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 18:59:52 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 16:07:27 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/16 14:09:14 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	confirm_wall(char *contents, int start, int len, int decider)
 		while (i < len)
 		{
 			if (contents[start + i] != '1')
-				error_on_validation("First and last rows must be filled with 1.",
+				error_on_validation("First&last rows must be filled with 1.",
 					contents);
 			i++;
 		}

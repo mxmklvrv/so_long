@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:23:01 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/10 12:23:13 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/16 14:11:47 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	move_hook(mlx_key_data_t keydata, void *param)
 	t_game	*game;
 
 	game = param;
-    if (game->dying == true)
-        return;
+	if (game->dying == true)
+		return ;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		mlx_close_window(game->mlx);
 	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
@@ -73,10 +73,9 @@ void	bonus_status(t_game *game)
 	control = 0;
 	if (game->map[game->ppos_y][game->ppos_x] == 'D')
 	{
-        game->dying = true;
-        game->death_frame = 0;
+		game->dying = true;
+		game->death_frame = 0;
 		game->loop_count = 0;
-		
 	}
 	if (game->map[game->ppos_y][game->ppos_x] == 'E')
 	{
@@ -101,7 +100,7 @@ void	game_status(t_game *game)
 		control = mlx_image_to_window(game->mlx, game->textures->floor,
 				game->ppos_x * PX, game->ppos_y * PX);
 		if (control < 0)
-			annihilate("Failed to redraw floor.", game, 1);
+			annihilate("Failed to redraw floor.\n", game, 1);
 		check_face_side(game);
 		ft_printf("\033[1;33mFood eaten\n\033[0m");
 		game->looted++;
@@ -113,9 +112,10 @@ void	game_status(t_game *game)
 		control = mlx_image_to_window(game->mlx, game->textures->exit,
 				game->epos_x * PX, game->epos_y * PX);
 		if (control < 0)
-			annihilate("Failed to redraw exit.", game, 1);
+			annihilate("Failed to redraw exit.\n", game, 1);
 	}
 }
+
 void	check_face_side(t_game *game)
 {
 	mlx_texture_t	*before_food;

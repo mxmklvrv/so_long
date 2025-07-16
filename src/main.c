@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:35:34 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/08 16:07:22 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/16 14:10:46 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int ac, char **av)
 	early_termination(game);
 	return (0);
 }
+
 t_game	*get_basic_data(char *input)
 {
 	char	*map_in_line;
@@ -74,6 +75,7 @@ void	start_game(t_game *game)
 	mlx_key_hook(game->mlx, move_hook, game);
 	mlx_loop(game->mlx);
 }
+
 t_textures	*init_textures(t_game *game)
 {
 	t_textures	*textures;
@@ -94,4 +96,3 @@ t_textures	*init_textures(t_game *game)
 	load_exit(textures, game);
 	return (textures);
 }
-

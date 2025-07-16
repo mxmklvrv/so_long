@@ -6,13 +6,13 @@
 #    By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/26 13:36:29 by mklevero          #+#    #+#              #
-#    Updated: 2025/07/09 17:30:10 by mklevero         ###   ########.fr        #
+#    Updated: 2025/07/16 14:04:27 by mklevero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 NAME_BONUS = so_long_bonus
-CC = cc -g
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 MLX42_DIR = ./MLX42
@@ -37,7 +37,8 @@ path_validation.c uploading_img.c gameplay.c rendering.c annihilate.c
 BONUS_SRCS = annihilate_bonus.c error_bonus.c gameplay_bonus.c \
 helpers_bonus.c main_bonus.c map_validation_2_bonus.c \
 map_validation_bonus.c path_validation_bonus.c rendering_bonus.c \
-uploading_img_bonus.c uploading_img_bonus_2.c uploading_img_bonus_3.c
+uploading_img_bonus.c uploading_img_bonus_2.c uploading_img_bonus_3.c \
+death_animation.c
 
 OBJ = $(addprefix $(OBJ_DIR),$(SRCS:.c=.o))
 .SECONDARY: $(OBJ)

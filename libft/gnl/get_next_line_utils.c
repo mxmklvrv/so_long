@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:49:24 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/07 18:38:48 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/16 14:07:58 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,3 @@ char	*gnl_ft_strjoin(char const *s1, char const *s2)
 	*temp = '\0';
 	return (joined);
 }
-

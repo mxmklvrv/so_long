@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 19:26:50 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/10 12:30:35 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/16 13:56:34 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,56 +92,10 @@ void	load_rest(t_game *game, int x, int y)
 		annihilate("Loading failed.", game, 1);
 }
 
-
 void	delete_img(t_game *game)
 {
 	if (game->textures->player_left)
 		mlx_delete_image(game->mlx, game->textures->player_left);
 	if (game->textures->player)
 		mlx_delete_image(game->mlx, game->textures->player);
-}
-// можем ли двигаться во время анимации смерти ? 
-// функция смерти разделена на 2 части 
-void	death(void *tmp)
-{
-	t_game 			*game;
-	
-	control = 0;
-	game = tmp;
-    if(game->dying == false)
-        return ;
-	if (++game->loop_count < 30)
-		return; 
-	game->loop_count = 0;
-	load_death_frame(game);
-    game->death_frame++;
-    if(game->death_frame >= 3)
-    {
-        game->dying = false;
-        annihilate("You ate poisoned flower, gg ez))", game, 0);
-    }
-}
-
-void laod_death_frame(t_game *game)
-{
-	int				control;
-	mlx_image_t		*image;
-	mlx_texture_t	*frame[3];
-
-	frame[0] = game->textures->player_td_0;
-	frame[1] = game->textures->player_td;
-	frame[2] = game->textures->player_td_2;
-	delete_img(game);
-	image = mlx_texture_to_image(game->mlx, frame[game->death_frame]);
-	if (image == NULL)
-		annihilate("Failed to load death.", game, 1);
-	mlx_resize_image(image, PX, PX);
-	control = mlx_image_to_window(game->mlx, image, game->ppos_x * PX,
-			game->ppos_y * PX);
-	if (control < 0)
-		annihilate("Failed to load death.", game, 1);
-	if(game->dir == 'l')
-        game->textures->player_left = image;
-    else
-        game->textures->player = image;
 }

@@ -6,7 +6,7 @@
 /*   By: mklevero <mklevero@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:48:33 by mklevero          #+#    #+#             */
-/*   Updated: 2025/07/07 18:57:39 by mklevero         ###   ########.fr       */
+/*   Updated: 2025/07/16 14:07:40 by mklevero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	gnl_clear(void)
 		g_leftovers = NULL;
 	}
 }
+
 char	*free_and_null(void)
 {
 	if (g_leftovers)
